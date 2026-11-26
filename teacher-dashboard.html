@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Teacher Dashboard - Bwijanga S.S</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial;background:#f1f5f9;padding:20px}
+.top{background:#14532d;color:white;text-align:center;padding:25px;border-radius:20px}
+.top h1{font-size:30px}
+.top p{font-size:18px;margin-top:5px}
+.card{background:white;border-radius:20px;padding:25px;margin-top:20px;max-width:600px;margin-left:auto;margin-right:auto}
+label{font-size:19px;font-weight:bold;display:block;margin-top:15px}
+input,select{width:100%;padding:16px;font-size:19px;border:2px solid #cbd5e1;border-radius:12px;margin-top:8px}
+button{width:100%;background:#16a34a;color:white;font-size:21px;font-weight:bold;padding:16px;border:none;border-radius:12px;margin-top:20px}
+table{width:100%;border-collapse:collapse;margin-top:20px}
+th,td{padding:12px;text-align:left;font-size:17px;border-bottom:1px solid #e2e8f0}
+th{background:#14532d;color:white}
+a{display:block;text-align:center;margin-top:15px;font-size:17px}
+</style>
+</head>
+<body>
+<div class="top">
+<h1>👨‍🏫 Teacher Dashboard</h1>
+<p>Bwijanga S.S - Term 1, 2027</p>
+<p>Welcome, Mr. T001 - Mathematics S.2</p>
+</div>
+<div class="card">
+<h2>✏️ Enter Marks</h2>
+<label>Select Student</label>
+<select id="student">
+<option>Samuel Favour - BWI001</option>
+<option>Bella - BWI002</option>
+<option>John - BWI003</option>
+</select>
+<label>Subject</label>
+<select id="subject">
+<option>Mathematics</option>
+<option>English</option>
+<option>Science</option>
+<option>CRE</option>
+<option>History</option>
+</select>
+<label>Mark / 100</label>
+<input id="mark" type="number" placeholder="e.g. 85">
+<button onclick="save()">💾 SAVE MARK</button>
+<p id="msg" style="text-align:center;font-size:18px;font-weight:bold;margin-top:15px"></p>
+<h2 style="margin-top:30px">📋 Recent Marks</h2>
+<table>
+<tr><th>Student</th><th>Subject</th><th>Mark</th></tr>
+<tr><td>Samuel Favour</td><td>Mathematics</td><td>85</td></tr>
+<tr><td>Bella</td><td>Mathematics</td><td>78</td></tr>
+</table>
+<a href="index.html">← Back to Home</a>
+</div>
+<script>
+function save(){
+let s=document.getElementById("student").value;
+let sub=document.getElementById("subject").value;
+let m=document.getElementById("mark").value;
+if(!m){document.getElementById("msg").innerText="❌ Please enter a mark";document.getElementById("msg").style.color="red";return;}
+document.getElementById("msg").innerText="✅ Saved! "+s+" - "+sub+" = "+m;
+document.getElementById("msg").style.color="green";
+document.getElementById("mark").value="";
+}
+</script>
+</body>
+</html>
