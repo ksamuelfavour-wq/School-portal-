@@ -1,39 +1,45 @@
+<!DOCTYPE html>
 <html>
-<head><title>Student - My Results</title></head>
-<body style="text-align:center; font-family:Arial; background:#f0fdf4; padding:20px;">
-<a href="index.html">⬅ Back Home</a>
-<h1 style="color:#15803d;">🎓 STUDENT PAGE</h1>
-<p>Enter your ID and PIN to see YOUR results only:</p>
-
-<input id="id" placeholder="Your Student ID e.g. S001" style="padding:12px; width:90%; margin:5px;"><br>
-<input id="pin" placeholder="Your PIN e.g. 1234" style="padding:12px; width:90%; margin:5px;"><br>
-<button onclick="check()" style="background:#16a34a; color:white; padding:15px 30px; font-size:18px; border:none; border-radius:10px; margin-top:10px;">SEE MY RESULTS</button>
-
-<div id="result" style="margin-top:20px; background:white; padding:20px; border-radius:10px; display:none;">
-<h2 id="sname"></h2>
-<p>Maths: <b id="math"></b></p>
-<p>English: <b id="eng"></b></p>
-<p>Science: <b id="sci"></b></p>
-<button onclick="window.print()" style="background:#1e40af; color:white; padding:12px 25px; border:none; border-radius:10px;">🖨 PRINT REPORT CARD</button>
+<head>
+<title>Student Login - Bwijanga S.S</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial;background:#0f172a;color:white;min-height:100vh;padding:25px 20px}
+h1{font-size:34px;text-align:center}
+p.sub{text-align:center;font-size:18px;margin:10px 0 30px;opacity:0.9}
+.box{background:white;color:#0f172a;border-radius:20px;padding:30px;max-width:500px;margin:0 auto}
+label{font-size:20px;font-weight:bold;display:block;margin-top:18px}
+input{width:100%;padding:18px;font-size:20px;border:2px solid #cbd5e1;border-radius:12px;margin-top:8px}
+button{width:100%;background:#1e40af;color:white;font-size:22px;font-weight:bold;padding:18px;border:none;border-radius:12px;margin-top:25px}
+.back{display:block;text-align:center;margin-top:20px;color:white;font-size:17px}
+#msg{font-size:18px;text-align:center;margin-top:15px;font-weight:bold}
+</style>
+</head>
+<body>
+<h1>🎓 Student Login</h1>
+<p class="sub">Bwijanga S.S - Enter your ID to view results</p>
+<div class="box">
+<label>Student ID</label>
+<input id="sid" placeholder="e.g. BWI001">
+<label>PIN</label>
+<input id="pin" type="password" placeholder="e.g. 1234">
+<button onclick="login()">LOGIN →</button>
+<p id="msg"></p>
+<p style="text-align:center;margin-top:15px;color:#64748b">Demo: ID = BWI001 , PIN = 1234</p>
 </div>
-<p id="error" style="color:red;"></p>
-
+<a class="back" href="index.html">← Back to Home</a>
 <script>
-function check(){
-  let id=document.getElementById('id').value;
-  let pin=document.getElementById('pin').value;
-  let all=JSON.parse(localStorage.getItem('students')||'[]');
-  let found=all.find(s=>s.id==id && s.pin==pin);
-  if(found){
-    document.getElementById('result').style.display='block';
-    document.getElementById('sname').innerHTML="Report Card for "+found.name;
-    document.getElementById('math').innerHTML=found.math;
-    document.getElementById('eng').innerHTML=found.eng;
-    document.getElementById('sci').innerHTML=found.sci;
-    document.getElementById('error').innerHTML="";
-  } else {
-    document.getElementById('error').innerHTML="❌ Wrong ID or PIN. Ask your teacher.";
-  }
+function login(){
+let id=document.getElementById("sid").value.trim().toUpperCase();
+let pin=document.getElementById("pin").value.trim();
+if(id==="BWI001" && pin==="1234"){
+document.getElementById("msg").innerText="Welcome! Loading your report...";
+setTimeout(()=>{window.location.href="report.html";},800);
+}else{
+document.getElementById("msg").innerText="❌ Wrong ID or PIN. Try BWI001 / 1234";
+document.getElementById("msg").style.color="red";
+}
 }
 </script>
 </body>
