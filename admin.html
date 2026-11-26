@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Head Teacher Login - Bwijanga S.S</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial;background:#0f172a;color:white;padding:25px 20px}
+h1{font-size:32px;text-align:center}
+p.sub{text-align:center;font-size:18px;margin:10px 0 30px}
+.box{background:white;color:#0f172a;border-radius:20px;padding:30px;max-width:500px;margin:0 auto}
+label{font-size:20px;font-weight:bold;display:block;margin-top:18px}
+input{width:100%;padding:18px;font-size:20px;border:2px solid #cbd5e1;border-radius:12px;margin-top:8px}
+button{width:100%;background:#7c3aed;color:white;font-size:22px;font-weight:bold;padding:18px;border:none;border-radius:12px;margin-top:25px}
+.back{display:block;text-align:center;margin-top:20px;color:white;font-size:17px}
+#msg{font-size:18px;text-align:center;margin-top:15px;font-weight:bold}
+</style>
+</head>
+<body>
+<h1>👑 Head Teacher Login</h1>
+<p class="sub">Bwijanga S.S - Administrator Only</p>
+<div class="box">
+<label>Admin ID</label>
+<input id="aid" placeholder="e.g. ADMIN">
+<label>Password</label>
+<input id="apass" type="password" placeholder="e.g. 1234">
+<button onclick="login()">LOGIN →</button>
+<p id="msg"></p>
+<p style="text-align:center;margin-top:15px;color:#64748b">Demo: ID = ADMIN , Password = 1234</p>
+</div>
+<a class="back" href="index.html">← Back to Home</a>
+<script>
+function login(){
+let id=document.getElementById("aid").value.trim().toUpperCase();
+let pass=document.getElementById("apass").value.trim();
+if(id==="ADMIN" && pass==="1234"){
+document.getElementById("msg").innerText="Welcome Head Teacher! Loading...";
+setTimeout(()=>{window.location.href="admin-dashboard.html";},800);
+}else{
+document.getElementById("msg").innerText="❌ Wrong ID or Password. Try ADMIN / 1234";
+document.getElementById("msg").style.color="red";
+}
+}
+</script>
+</body>
+</html>
