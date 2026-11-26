@@ -5,64 +5,88 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial;background:#f1f5f9;padding:20px}
+body{font-family:Arial;background:#f1f5f9;padding:15px}
 .top{background:#14532d;color:white;text-align:center;padding:25px;border-radius:20px}
-.top h1{font-size:30px}
-.top p{font-size:18px;margin-top:5px}
-.card{background:white;border-radius:20px;padding:25px;margin-top:20px;max-width:600px;margin-left:auto;margin-right:auto}
-label{font-size:19px;font-weight:bold;display:block;margin-top:15px}
-input,select{width:100%;padding:16px;font-size:19px;border:2px solid #cbd5e1;border-radius:12px;margin-top:8px}
-button{width:100%;background:#16a34a;color:white;font-size:21px;font-weight:bold;padding:16px;border:none;border-radius:12px;margin-top:20px}
+.top h1{font-size:28px}
+.top p{font-size:17px;margin-top:5px}
+.card{background:white;border-radius:20px;padding:20px;margin-top:15px;max-width:750px;margin-left:auto;margin-right:auto}
+label{font-size:18px;font-weight:bold;display:block;margin-top:12px}
+select{width:100%;padding:15px;font-size:18px;border:2px solid #cbd5e1;border-radius:12px;margin-top:8px}
+#search{width:100%;padding:16px;font-size:18px;border:2px solid #16a34a;border-radius:12px;margin-top:15px}
 table{width:100%;border-collapse:collapse;margin-top:20px}
-th,td{padding:12px;text-align:left;font-size:17px;border-bottom:1px solid #e2e8f0}
+th,td{padding:12px;text-align:left;font-size:16px;border-bottom:1px solid #e2e8f0}
 th{background:#14532d;color:white}
+input.mark{width:80px;padding:10px;font-size:18px;text-align:center;border:2px solid #cbd5e1;border-radius:8px}
+button.save{width:100%;background:#16a34a;color:white;font-size:21px;font-weight:bold;padding:16px;border:none;border-radius:12px;margin-top:20px}
 a{display:block;text-align:center;margin-top:15px;font-size:17px}
 </style>
 </head>
 <body>
 <div class="top">
 <h1>👨‍🏫 Teacher Dashboard</h1>
-<p>Bwijanga S.S - Term 1, 2027</p>
-<p>Welcome, Mr. T001 - Mathematics S.2</p>
+<p>Bwijanga S.S - Welcome, Mr. T001 - Mathematics</p>
+<p style="font-size:15px;opacity:0.9">Students are filled by Head Teacher - You only view & enter marks</p>
 </div>
 <div class="card">
-<h2>✏️ Enter Marks</h2>
-<label>Select Student</label>
-<select id="student">
-<option>Samuel Favour - BWI001</option>
-<option>Bella - BWI002</option>
-<option>John - BWI003</option>
+<label>Select Class / Stream</label>
+<select id="stream" onchange="showStream()">
+<option value="S1A">Senior 1 - Stream A</option>
+<option value="S1B">Senior 1 - Stream B</option>
+<option value="S2A">Senior 2 - Stream A</option>
+<option value="S2B">Senior 2 - Stream B</option>
 </select>
-<label>Subject</label>
-<select id="subject">
+<label>Select Subject</label>
+<select>
 <option>Mathematics</option>
 <option>English</option>
 <option>Science</option>
 <option>CRE</option>
 <option>History</option>
 </select>
-<label>Mark / 100</label>
-<input id="mark" type="number" placeholder="e.g. 85">
-<button onclick="save()">💾 SAVE MARK</button>
-<p id="msg" style="text-align:center;font-size:18px;font-weight:bold;margin-top:15px"></p>
-<h2 style="margin-top:30px">📋 Recent Marks</h2>
-<table>
-<tr><th>Student</th><th>Subject</th><th>Mark</th></tr>
-<tr><td>Samuel Favour</td><td>Mathematics</td><td>85</td></tr>
-<tr><td>Bella</td><td>Mathematics</td><td>78</td></tr>
+<label>Select Assessment</label>
+<select>
+<option>Activity of Integration (AoI) - Term 1</option>
+<option>End of Term Exam</option>
+</select>
+
+<h2 id="title" style="margin-top:25px;font-size:22px">📋 Senior 1 - Stream A - Students List</h2>
+<p style="color:#64748b;margin-top:5px">Filled by Head Teacher. Search, then enter AoI marks /20</p>
+
+<input id="search" onkeyup="searchStudent()" placeholder="🔍 Search student by name or ID... e.g. Samuel or BWI001">
+
+<table id="studentTable">
+<tr><th>No.</th><th>Student Name</th><th>ID</th><th>AoI /20</th></tr>
+<tr><td>1</td><td>Samuel Favour</td><td>BWI001</td><td><input class="mark" type="number" placeholder="-"></td></tr>
+<tr><td>2</td><td>Bella Nakato</td><td>BWI002</td><td><input class="mark" type="number" placeholder="-"></td></tr>
+<tr><td>3</td><td>John Mukasa</td><td>BWI003</td><td><input class="mark" type="number" placeholder="-"></td></tr>
+<tr><td>4</td><td>Grace Achieng</td><td>BWI004</td><td><input class="mark" type="number" placeholder="-"></td></tr>
+<tr><td>5</td><td>David Ssemwanga</td><td>BWI005</td><td><input class="mark" type="number" placeholder="-"></td></tr>
+<tr><td>6</td><td>Faith Nansubuga</td><td>BWI006</td><td><input class="mark" type="number" placeholder="-"></td></tr>
 </table>
+
+<button class="save" onclick="saveAll()">💾 SAVE ALL MARKS</button>
+<p id="msg" style="text-align:center;font-size:18px;font-weight:bold;margin-top:15px"></p>
 <a href="index.html">← Back to Home</a>
 </div>
 <script>
-function save(){
-let s=document.getElementById("student").value;
-let sub=document.getElementById("subject").value;
-let m=document.getElementById("mark").value;
-if(!m){document.getElementById("msg").innerText="❌ Please enter a mark";document.getElementById("msg").style.color="red";return;}
-document.getElementById("msg").innerText="✅ Saved! "+s+" - "+sub+" = "+m;
+function showStream(){
+let s=document.getElementById("stream").value;
+let names={"S1A":"Senior 1 - Stream A","S1B":"Senior 1 - Stream B","S2A":"Senior 2 - Stream A","S2B":"Senior 2 - Stream B"};
+document.getElementById("title").innerText="📋 "+names[s]+" - Students List";
+}
+function searchStudent(){
+let input=document.getElementById("search").value.toUpperCase();
+let rows=document.getElementById("studentTable").getElementsByTagName("tr");
+for(let i=1;i<rows.length;i++){
+let name=rows[i].getElementsByTagName("td")[1].innerText.toUpperCase();
+let id=rows[i].getElementsByTagName("td")[2].innerText.toUpperCase();
+if(name.includes(input)||id.includes(input)){rows[i].style.display="";}else{rows[i].style.display="none";}
+}
+}
+function saveAll(){
+document.getElementById("msg").innerText="✅ Marks Saved for this Stream! Well done Teacher!";
 document.getElementById("msg").style.color="green";
-document.getElementById("mark").value="";
 }
 </script>
 </body>
-</html>
+  </html>
