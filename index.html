@@ -4,40 +4,39 @@
 <title>School Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body{font-family:Arial;text-align:center;padding:20px;background:#f0f8ff}
-.box{background:white;padding:20px;border-radius:15px;max-width:400px;margin:auto}
-input{width:90%;padding:12px;margin:8px;border-radius:8px;font-size:16px}
-button{background:#1e40af;color:white;padding:12px;border:none;border-radius:8px;font-size:16px;width:95%}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial;background:#0f172a;color:white;min-height:100vh}
+.top{background:#1e40af;padding:25px 20px;text-align:center}
+.top h1{font-size:38px;line-height:1.1}
+.top p{font-size:18px;margin-top:8px;opacity:0.9}
+.hero{padding:35px 20px;text-align:center;background:linear-gradient(180deg,#1e40af,#0f172a)}
+.hero h2{font-size:32px;line-height:1.2}
+.hero p{font-size:19px;margin:15px 0;line-height:1.5}
+.cards{padding:20px;display:flex;flex-direction:column;gap:18px;max-width:600px;margin:0 auto}
+.card{background:white;color:#0f172a;border-radius:18px;padding:28px;text-align:center}
+.card h3{font-size:26px;margin-bottom:8px}
+.card p{font-size:17px;line-height:1.5;color:#475569}
+.card a{display:block;margin-top:18px;background:#1e40af;color:white;text-decoration:none;font-size:22px;font-weight:bold;padding:18px;border-radius:12px}
+.card:nth-child(2) a{background:#059669}
+.card:nth-child(3) a{background:#d97706}
+.footer{text-align:center;padding:20px;font-size:15px;opacity:0.8}
+@media(min-width:700px){.top h1{font-size:52px}.hero h2{font-size:48px}.cards{max-width:900px}}
 </style>
 </head>
 <body>
-<h1 style="color:#1e40af">MY SCHOOL PORTAL</h1>
-<div class="box" id="loginBox">
-<h2>Student Login</h2>
-<input id="sid" placeholder="Student ID e.g S001">
-<input id="pin" placeholder="PIN e.g 1111" type="password">
-<button onclick="login()">Login</button>
-<p id="msg" style="color:red"></p>
-<p>Try: S001 / 1111</p>
+<div class="top">
+<h1>🏫 SCHOOL NAME</h1>
+<p>Excellence • Discipline • God First</p>
 </div>
-<div class="box" id="resultBox" style="display:none">
-<h2 id="welcome"></h2>
-<p id="details"></p>
-<button onclick="location.reload()">Logout</button>
+<div class="hero">
+<h2>Welcome to Our<br>School Portal</h2>
+<p>Results, Report Cards & School Management<br>All in One Place - Fast, Simple & Secure</p>
 </div>
-<script>
-const students={"S001":{name:"Bella",pin:"1111",maths:"85",english:"90"},"S002":{name:"Samuel",pin:"2222",maths:"78",english:"88"},"S003":{name:"Miracle",pin:"3333",maths:"92",english:"81"}};
-function login(){
-let id=document.getElementById("sid").value.trim().toUpperCase();
-let pin=document.getElementById("pin").value.trim();
-let s=students[id];
-if(s && s.pin===pin){
-document.getElementById("loginBox").style.display="none";
-document.getElementById("resultBox").style.display="block";
-document.getElementById("welcome").innerText="Welcome "+s.name+"!";
-document.getElementById("details").innerHTML="ID: "+id+"<br><br>Maths: "+s.maths+"<br>English: "+s.english;
-}else{document.getElementById("msg").innerText="Wrong ID or PIN, try again";}
-}
-</script>
+<div class="cards">
+<div class="card"><h3>🎓 For Students</h3><p>View your results and report card anytime</p><a href="student.html">STUDENT LOGIN →</a></div>
+<div class="card"><h3>👨‍🏫 For Teachers</h3><p>Enter marks, view your class & streams</p><a href="teacher.html">TEACHER LOGIN →</a></div>
+<div class="card"><h3>👑 For Admin</h3><p>See all students, all results, print report cards</p><a href="admin.html">ADMIN LOGIN →</a></div>
+</div>
+<div class="footer">Term 1, 2026 • Built by Samuel • Version 2</div>
 </body>
 </html>
