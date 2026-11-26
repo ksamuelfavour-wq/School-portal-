@@ -1,0 +1,28 @@
+<html>
+<head><title>Teacher - Enter Results</title></head>
+<body style="text-align:center; font-family:Arial; background:#fff7ed; padding:20px;">
+<a href="index.html">⬅ Back Home</a>
+<h1 style="color:#c2410c;">👨‍🏫 TEACHER PAGE</h1>
+<p>Enter Student Results</p>
+
+<input id="name" placeholder="Student Name" style="padding:12px; width:90%; margin:5px;"><br>
+<input id="id" placeholder="Student ID e.g. S001" style="padding:12px; width:90%; margin:5px;"><br>
+<input id="pin" placeholder="Student PIN e.g. 1234" style="padding:12px; width:90%; margin:5px;"><br>
+<input id="math" type="number" placeholder="Maths Marks" style="padding:12px; width:90%; margin:5px;"><br>
+<input id="eng" type="number" placeholder="English Marks" style="padding:12px; width:90%; margin:5px;"><br>
+<input id="sci" type="number" placeholder="Science Marks" style="padding:12px; width:90%; margin:5px;"><br>
+
+<button onclick="save()" style="background:#ea580c; color:white; padding:15px 30px; font-size:18px; border:none; border-radius:10px; margin-top:10px;">SAVE RESULT</button>
+<p id="msg"></p>
+
+<script>
+function save(){
+  let s = {name:document.getElementById('name').value, id:document.getElementById('id').value, pin:document.getElementById('pin').value, math:document.getElementById('math').value, eng:document.getElementById('eng').value, sci:document.getElementById('sci').value};
+  let all = JSON.parse(localStorage.getItem('students')||'[]');
+  all.push(s);
+  localStorage.setItem('students', JSON.stringify(all));
+  document.getElementById('msg').innerHTML = "✅ Saved for " + s.name;
+}
+</script>
+</body>
+</html>
