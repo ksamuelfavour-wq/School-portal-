@@ -1,28 +1,62 @@
+<!DOCTYPE html>
 <html>
-<head><title>Teacher - Enter Results</title></head>
-<body style="text-align:center; font-family:Arial; background:#fff7ed; padding:20px;">
-<a href="index.html">⬅ Back Home</a>
-<h1 style="color:#c2410c;">👨‍🏫 TEACHER PAGE</h1>
-<p>Enter Student Results</p>
-
-<input id="name" placeholder="Student Name" style="padding:12px; width:90%; margin:5px;"><br>
-<input id="id" placeholder="Student ID e.g. S001" style="padding:12px; width:90%; margin:5px;"><br>
-<input id="pin" placeholder="Student PIN e.g. 1234" style="padding:12px; width:90%; margin:5px;"><br>
-<input id="math" type="number" placeholder="Maths Marks" style="padding:12px; width:90%; margin:5px;"><br>
-<input id="eng" type="number" placeholder="English Marks" style="padding:12px; width:90%; margin:5px;"><br>
-<input id="sci" type="number" placeholder="Science Marks" style="padding:12px; width:90%; margin:5px;"><br>
-
-<button onclick="save()" style="background:#ea580c; color:white; padding:15px 30px; font-size:18px; border:none; border-radius:10px; margin-top:10px;">SAVE RESULT</button>
+<head>
+<title>Teacher Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial;text-align:center;padding:10px;background:#f0f8ff}
+table{margin:auto;background:white;border-collapse:collapse;width:100%;max-width:600px}
+th,td{border:1px solid #ccc;padding:8px}
+input{width:60px;padding:8px;text-align:center}
+button{background:#1e40af;color:white;padding:12px 20px;border:none;border-radius:8px;font-size:16px;margin:10px}
+</style>
+</head>
+<body>
+<h1 style="color:#1e40af">TEACHER - ENTER MARKS</h1>
+<table>
+<tr><th>Name</th><th>ID</th><th>Maths</th><th>English</th><th>Total</th><th>Average</th><th>Grade</th></tr>
+<tr><td>Bella</td><td>S001</td><td><input id="S001-m" type="number"></td><td><input id="S001-e" type="number"></td><td id="S001-t">-</td><td id="S001-a">-</td><td id="S001-g">-</td></tr>
+<tr><td>Samuel</td><td>S002</td><td><input id="S002-m" type="number"></td><td><input id="S002-e" type="number"></td><td id="S002-t">-</td><td id="S002-a">-</td><td id="S002-g">-</td></tr>
+<tr><td>Miracle</td><td>S003</td><td><input id="S003-m" type="number"></td><td><input id="S003-e" type="number"></td><td id="S003-t">-</td><td id="S003-a">-</td><td id="S003-g">-</td></tr>
+</table>
+<button onclick="calc()">Calculate Average</button>
+<button onclick="saveMarks()">Save Marks</button>
 <p id="msg"></p>
-
+<p><a href="index.html">Go to Student Login</a></p>
 <script>
-function save(){
-  let s = {name:document.getElementById('name').value, id:document.getElementById('id').value, pin:document.getElementById('pin').value, math:document.getElementById('math').value, eng:document.getElementById('eng').value, sci:document.getElementById('sci').value};
-  let all = JSON.parse(localStorage.getItem('students')||'[]');
-  all.push(s);
-  localStorage.setItem('students', JSON.stringify(all));
-  document.getElementById('msg').innerHTML = "✅ Saved for " + s.name;
+function getGrade(avg){
+if(avg>=80) return "A";
+if(avg>=70) return "B";
+if(avg>=60) return "C";
+if(avg>=50) return "D";
+return "F";
 }
+function calc(){
+let ids=["S001","S002","S003"];
+ids.forEach(id=>{
+let m=Number(document.getElementById(id+"-m").value||0);
+let e=Number(document.getElementById(id+"-e").value||0);
+let total=m+e;
+let avg=(total/2).toFixed(1);
+document.getElementById(id+"-t").innerText=total;
+document.getElementById(id+"-a").innerText=avg;
+document.getElementById(id+"-g").innerText=getGrade(avg);
+});
+}
+function saveMarks(){
+calc();
+let data={};
+["S001","S002","S003"].forEach(id=>{
+data[id]={maths:document.getElementById(id+"-m").value, english:document.getElementById(id+"-e").value};
+});
+localStorage.setItem("schoolMarks", JSON.stringify(data));
+document.getElementById("msg").innerText="Saved! Students will now see these marks.";
+}
+let saved=JSON.parse(localStorage.getItem("schoolMarks")||"{}");
+for(let id in saved){
+if(document.getElementById(id+"-m")){document.getElementById(id+"-m").value=saved[id].maths; document.getElementById(id+"-e").value=saved[id].english;}
+}
+calc();
 </script>
 </body>
 </html>
