@@ -1,19 +1,43 @@
+<!DOCTYPE html>
 <html>
 <head>
 <title>School Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial;text-align:center;padding:20px;background:#f0f8ff}
+.box{background:white;padding:20px;border-radius:15px;max-width:400px;margin:auto}
+input{width:90%;padding:12px;margin:8px;border-radius:8px;font-size:16px}
+button{background:#1e40af;color:white;padding:12px;border:none;border-radius:8px;font-size:16px;width:95%}
+</style>
 </head>
-<body style="text-align:center; font-family:Arial; background:#eef2ff; padding:20px;">
-
-<h1 style="color:#1e40af;">🏫 MY SCHOOL PORTAL</h1>
-<p>Welcome! Choose who you are:</p>
-<br><br>
-
-<a href="teacher.html" style="display:block; background:#1e40af; color:white; padding:20px; margin:10px; font-size:22px; text-decoration:none; border-radius:10px;">👨‍🏫 I AM A TEACHER</a>
-
-<a href="student.html" style="display:block; background:#16a34a; color:white; padding:20px; margin:10px; font-size:22px; text-decoration:none; border-radius:10px;">🎓 I AM A STUDENT</a>
-
-<br>
-<p>Made by Samuel</p>
-
+<body>
+<h1 style="color:#1e40af">MY SCHOOL PORTAL</h1>
+<div class="box" id="loginBox">
+<h2>Student Login</h2>
+<input id="sid" placeholder="Student ID e.g S001">
+<input id="pin" placeholder="PIN e.g 1111" type="password">
+<button onclick="login()">Login</button>
+<p id="msg" style="color:red"></p>
+<p>Try: S001 / 1111</p>
+</div>
+<div class="box" id="resultBox" style="display:none">
+<h2 id="welcome"></h2>
+<p id="details"></p>
+<button onclick="location.reload()">Logout</button>
+</div>
+<script>
+const students={"S001":{name:"Bella",pin:"1111",maths:"85",english:"90"},"S002":{name:"Samuel",pin:"2222",maths:"78",english:"88"},"S003":{name:"Miracle",pin:"3333",maths:"92",english:"81"}};
+function login(){
+let id=document.getElementById("sid").value.trim().toUpperCase();
+let pin=document.getElementById("pin").value.trim();
+let s=students[id];
+if(s && s.pin===pin){
+document.getElementById("loginBox").style.display="none";
+document.getElementById("resultBox").style.display="block";
+document.getElementById("welcome").innerText="Welcome "+s.name+"!";
+document.getElementById("details").innerHTML="ID: "+id+"<br><br>Maths: "+s.maths+"<br>English: "+s.english;
+}else{document.getElementById("msg").innerText="Wrong ID or PIN, try again";}
+}
+</script>
 </body>
 </html>
