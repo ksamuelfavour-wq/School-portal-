@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Head Teacher Dashboard - Bwijanga S.S</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial;background:#f1f5f9;padding:15px}
+.top{background:#4c1d95;color:white;text-align:center;padding:25px;border-radius:20px}
+.top h1{font-size:28px}
+.top p{font-size:17px;margin-top:5px}
+.card{background:white;border-radius:20px;padding:20px;margin-top:15px;max-width:750px;margin-left:auto;margin-right:auto}
+h2{font-size:22px;margin-bottom:10px}
+label{font-size:18px;font-weight:bold;display:block;margin-top:12px}
+input,select{width:100%;padding:15px;font-size:18px;border:2px solid #cbd5e1;border-radius:12px;margin-top:8px}
+button{width:100%;color:white;font-size:20px;font-weight:bold;padding:16px;border:none;border-radius:12px;margin-top:15px}
+.btn-purple{background:#7c3aed}
+.btn-green{background:#16a34a}
+.btn-blue{background:#2563eb}
+.btn-orange{background:#ea580c}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+th,td{padding:12px;text-align:left;font-size:16px;border-bottom:1px solid #e2e8f0}
+th{background:#4c1d95;color:white}
+a{display:block;text-align:center;margin-top:15px;font-size:17px}
+</style>
+</head>
+<body>
+<div class="top">
+<h1>👑 Head Teacher Dashboard</h1>
+<p>Bwijanga S.S - Manage Whole School</p>
+<p>Welcome, Head Teacher</p>
+</div>
+
+<div class="card">
+<h2>1️⃣ Create Stream / Class</h2>
+<label>Class</label>
+<select id="newClass"><option>Senior 1</option><option>Senior 2</option><option>Senior 3</option><option>Senior 4</option><option>Senior 5</option><option>Senior 6</option></select>
+<label>Stream Name</label>
+<input id="newStream" placeholder="e.g. A, B, C">
+<button class="btn-purple" onclick="createStream()">➕ CREATE STREAM</button>
+<p id="msg1" style="text-align:center;font-weight:bold;margin-top:10px"></p>
+<p style="margin-top:10px;color:#475569">Streams in school: S1 A, S1 B, S1 C, S2 A, S2 B, S3 A, S4 A...</p>
+</div>
+
+<div class="card">
+<h2>2️⃣ Add Student to Class List</h2>
+<label>Student Full Name</label>
+<input id="sName" placeholder="e.g. Samuel Favour">
+<label>Student ID</label>
+<input id="sId" placeholder="e.g. BWI007">
+<label>Select Stream</label>
+<select id="sStream"><option>Senior 1 - A</option><option>Senior 1 - B</option><option>Senior 1 - C</option><option>Senior 2 - A</option><option>Senior 2 - B</option><option>Senior 3 - A</option></select>
+<button class="btn-green" onclick="addStudent()">➕ ADD STUDENT TO LIST</button>
+<p id="msg2" style="text-align:center;font-weight:bold;margin-top:10px"></p>
+<table id="listTable">
+<tr><th>Name</th><th>ID</th><th>Stream</th></tr>
+<tr><td>Samuel Favour</td><td>BWI001</td><td>S1 A</td></tr>
+<tr><td>Bella Nakato</td><td>BWI002</td><td>S1 A</td></tr>
+<tr><td>John Mukasa</td><td>BWI003</td><td>S1 A</td></tr>
+</table>
+<p style="margin-top:10px;color:#475569">👉 When you add here, Teacher will see them in his dashboard!</p>
+</div>
+
+<div class="card">
+<h2>3️⃣ Print Report Cards</h2>
+<label>Search Student to Print Report</label>
+<input id="printSearch" onkeyup="searchPrint()" placeholder="🔍 Type name or ID...">
+<table id="printTable">
+<tr><th>Student</th><th>Action</th></tr>
+<tr><td>Samuel Favour - BWI001</td><td><button class="btn-blue" style="padding:10px" onclick="window.location.href='student-report.html'">🖨️ PRINT REPORT</button></td></tr>
+<tr><td>Bella Nakato - BWI002</td><td><button class="btn-blue" style="padding:10px" onclick="window.location.href='student-report.html'">🖨️ PRINT REPORT</button></td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>4️⃣ Manage Website</h2>
+<button class="btn-orange" onclick="alert('Teachers List: T001 - Mathematics, T002 - English')">👨‍🏫 VIEW TEACHERS</button>
+<button class="btn-blue" onclick="alert('Total Students: 450 | Total Teachers: 18 | Streams: 12')">📊 VIEW SCHOOL REPORT</button>
+<a href="index.html">← Back to Home</a>
+</div>
+
+<script>
+function createStream(){
+let c=document.getElementById("newClass").value;
+let s=document.getElementById("newStream").value.trim().toUpperCase();
+if(!s){alert("Please type stream name e.g. A");return;}
+document.getElementById("msg1").innerText="✅ Created: "+c+" - Stream "+s+"! Teachers can now see it!";
+document.getElementById("msg1").style.color="green";
+document.getElementById("newStream").value="";
+}
+function addStudent(){
+let n=document.getElementById("sName").value.trim();
+let id=document.getElementById("sId").value.trim().toUpperCase();
+let st=document.getElementById("sStream").value;
+if(!n||!id){alert("Please fill Name and ID");return;}
+let t=document.getElementById("listTable");
+let row=t.insertRow(-1);
+row.insertCell(0).innerText=n;
+row.insertCell(1).innerText=id;
+row.insertCell(2).innerText=st;
+document.getElementById("msg2").innerText="✅ Added "+n+" to "+st+"! Teacher will now see them!";
+document.getElementById("msg2").style.color="green";
+document.getElementById("sName").value="";document.getElementById("sId").value="";
+}
+function searchPrint(){
+let inp=document.getElementById("printSearch").value.toUpperCase();
+let rows=document.getElementById("printTable").getElementsByTagName("tr");
+for(let i=1;i<rows.length;i++){
+let txt=rows[i].innerText.toUpperCase();
+rows[i].style.display=txt.includes(inp)?"":"none";
+}
+}
+</script>
+</body>
+</html>
