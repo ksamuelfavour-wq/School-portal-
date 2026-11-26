@@ -1,0 +1,40 @@
+<html>
+<head><title>Student - My Results</title></head>
+<body style="text-align:center; font-family:Arial; background:#f0fdf4; padding:20px;">
+<a href="index.html">⬅ Back Home</a>
+<h1 style="color:#15803d;">🎓 STUDENT PAGE</h1>
+<p>Enter your ID and PIN to see YOUR results only:</p>
+
+<input id="id" placeholder="Your Student ID e.g. S001" style="padding:12px; width:90%; margin:5px;"><br>
+<input id="pin" placeholder="Your PIN e.g. 1234" style="padding:12px; width:90%; margin:5px;"><br>
+<button onclick="check()" style="background:#16a34a; color:white; padding:15px 30px; font-size:18px; border:none; border-radius:10px; margin-top:10px;">SEE MY RESULTS</button>
+
+<div id="result" style="margin-top:20px; background:white; padding:20px; border-radius:10px; display:none;">
+<h2 id="sname"></h2>
+<p>Maths: <b id="math"></b></p>
+<p>English: <b id="eng"></b></p>
+<p>Science: <b id="sci"></b></p>
+<button onclick="window.print()" style="background:#1e40af; color:white; padding:12px 25px; border:none; border-radius:10px;">🖨 PRINT REPORT CARD</button>
+</div>
+<p id="error" style="color:red;"></p>
+
+<script>
+function check(){
+  let id=document.getElementById('id').value;
+  let pin=document.getElementById('pin').value;
+  let all=JSON.parse(localStorage.getItem('students')||'[]');
+  let found=all.find(s=>s.id==id && s.pin==pin);
+  if(found){
+    document.getElementById('result').style.display='block';
+    document.getElementById('sname').innerHTML="Report Card for "+found.name;
+    document.getElementById('math').innerHTML=found.math;
+    document.getElementById('eng').innerHTML=found.eng;
+    document.getElementById('sci').innerHTML=found.sci;
+    document.getElementById('error').innerHTML="";
+  } else {
+    document.getElementById('error').innerHTML="❌ Wrong ID or PIN. Ask your teacher.";
+  }
+}
+</script>
+</body>
+</html>
