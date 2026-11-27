@@ -11,8 +11,8 @@ button{padding:12px 16px;border:none;border-radius:10px;font-weight:bold;cursor:
 .btn-print{background:#0a1930;color:#fff}.btn-gold{background:#f5b301}.btn-green{background:#16a34a;color:#fff}
 select,input,textarea{padding:10px;border:1px solid #ddd;border-radius:8px}
 .edit-panel{background:#fffbe6;border:2px dashed #f5b301;max-width:900px;margin:0 auto 10px;padding:14px;border-radius:10px}
-.edit-panel h3{margin-bottom:8px}.edit-panel label{font-size:12px;font-weight:bold;display:block;margin-top:8px}
-.edit-panel input{width:100%;margin-top:4px}.edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.edit-panel label{font-size:12px;font-weight:bold;display:block;margin-top:8px}.edit-panel input{width:100%;margin-top:4px}
+.edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:600px){.edit-grid{grid-template-columns:1fr}}
 .page{background:#fff;max-width:900px;margin:0 auto;padding:18px;border-left:8px solid #0a1930;border-bottom:8px solid #0ea5e9}
 .school{text-align:right}.school h2{font-size:16px;text-transform:uppercase}
@@ -24,7 +24,7 @@ select,input,textarea{padding:10px;border:1px solid #ddd;border-radius:8px}
 .info-text{flex:1;min-width:200px;font-size:14px;line-height:1.9}.info-text b{font-size:16px}
 .chart-box{flex:1;min-width:260px;border:1px solid #eee;padding:8px}canvas{width:100%;height:130px}
 .stats{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #ddd;border-bottom:1px solid #ddd;margin:12px 0;text-align:center;background:#e0f2fe}
-.stats div{padding:10px;border-right:1px solid #ddd}.stats div:last-child{border:none}.stats b{font-size:20px}.stats small{display:block}
+.stats div{padding:10px;border-right:1px solid #ddd}.stats b{font-size:20px}.stats small{display:block}
 .table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:12px;min-width:750px}
 th{background:#f8fafc;padding:8px;border:1px solid #ddd;text-align:left;font-size:11px}td{padding:7px 8px;border:1px solid #ddd}.center{text-align:center}
 .chart-wrap{display:flex;gap:8px;margin-top:10px}.y-axis{display:flex;flex-direction:column;justify-content:space-between;height:140px;font-size:13px;padding-bottom:22px;text-align:right}
@@ -34,7 +34,7 @@ th{background:#f8fafc;padding:8px;border:1px solid #ddd;text-align:left;font-siz
 @media(max-width:600px){.remarks-layout{grid-template-columns:1fr}.bottom{grid-template-columns:1fr}}
 .remarks{font-size:13px;line-height:1.6}.sig-col{text-align:right}.sig-img{font-family:cursive;font-size:28px;color:#1e40af;margin:18px 0 5px;transform:rotate(-3deg)}
 .stamp{border:3px solid #1e40af;padding:6px 8px;text-align:center;line-height:1.2}.stamp .top{color:#1e40af;font-weight:900;font-size:13px}.stamp .date{color:#dc2626;font-weight:900;font-size:22px;margin:4px 0}.stamp .box{color:#1e40af;font-weight:700;font-size:11px}
-.dates{background:#16a34a;color:#fff;padding:10px;margin-top:14px}.dates h3{font-size:14px}
+.dates{background:#16a34a;color:#fff;padding:10px;margin-top:14px}
 .qr-row{display:flex;gap:14px;align-items:center;margin-top:12px}.qr-box{width:110px;height:110px;min-width:110px;border:3px solid #111;display:grid;place-items:center;font-size:10px;text-align:center}
 .bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 @media print{body{background:#fff;padding:0}.topbar,.edit-panel{display:none}.page{border:none;max-width:none}}
@@ -43,32 +43,23 @@ th{background:#f8fafc;padding:8px;border:1px solid #ddd;text-align:left;font-siz
 </style>
 </head>
 <body>
-<div class="topbar">
-<div style="display:flex;gap:8px;flex-wrap:wrap">
-<select id="studentSelect" onchange="loadStudent()"></select>
-<button class="btn-green" id="settingsBtn" onclick="toggleEdit()">⚙️ Head Teacher Settings</button>
-<button class="btn-gold" onclick="window.print()">🖨️ Print / Save PDF</button>
-</div><a href="index.html"><button>🏠 Home</button></a>
-</div>
-
-<!-- ADMIN ONLY SETTINGS -->
+<div class="topbar"><div style="display:flex;gap:8px;flex-wrap:wrap"><select id="studentSelect" onchange="loadStudent()"></select><button class="btn-green" id="settingsBtn" onclick="toggleEdit()">⚙️ Head Teacher Settings</button><button class="btn-gold" onclick="window.print()">🖨️ Print / Save PDF</button></div><a href="admin.html"><button>🏠 HM Dashboard</button></a></div>
 <div class="edit-panel" id="editPanel" style="display:none">
 <h3>⚙️ Head Teacher Settings - ADMIN ONLY</h3>
-<p style="font-size:12px;color:#666">Fill Class + Stream + Term once. It auto goes to Blue Title on report.</p>
 <div class="edit-grid">
-<div><label>Class (e.g. SENIOR 4, SENIOR 1)</label><input id="cfgClass" oninput="saveConfig()"></div>
-<div><label>Stream (e.g. C, A, B, or ALL STREAMS)</label><input id="cfgStream" placeholder="C" oninput="saveConfig()"></div>
-<div><label>Term (e.g. 2026 TERM 1)</label><input id="cfgTerm" oninput="saveConfig()"></div>
-<div><label>Report Type (e.g. S.4 REPORTS)</label><input id="cfgReportType" oninput="saveConfig()"></div>
+<div><label>Class (e.g. SENIOR 4)</label><input id="cfgClass" oninput="saveConfig()"></div>
+<div><label>Stream (e.g. C, A, ALL STREAMS)</label><input id="cfgStream" oninput="saveConfig()"></div>
+<div><label>Term</label><input id="cfgTerm" oninput="saveConfig()"></div>
+<div><label>Report Type</label><input id="cfgReportType" oninput="saveConfig()"></div>
 <div><label>School Contacts</label><input id="cfgContacts" oninput="saveConfig()"></div>
-<div><label>Previous Term (for Deviation)</label><input id="cfgPrevTerm" placeholder="2025 TERM 3" oninput="saveConfig()"></div>
+<div><label>Previous Term (for Deviation)</label><input id="cfgPrevTerm" oninput="saveConfig()"></div>
 </div>
-<h4 style="margin-top:12px">📊 Grade Boundaries - Change if paper was hard / easy</h4>
+<h4 style="margin-top:12px">📊 Grade Boundaries - Admin can change</h4>
 <div class="edit-grid">
-<div><label>A = 80 and above → Type new value</label><input id="cfgA" type="number" oninput="saveConfig()"></div>
-<div><label>B = 70 and above</label><input id="cfgB" type="number" oninput="saveConfig()"></div>
-<div><label>C = 60 and above</label><input id="cfgC" type="number" oninput="saveConfig()"></div>
-<div><label>D = 50 and above (below = E)</label><input id="cfgD" type="number" oninput="saveConfig()"></div>
+<div><label>A = and above</label><input id="cfgA" type="number" oninput="saveConfig()"></div>
+<div><label>B = and above</label><input id="cfgB" type="number" oninput="saveConfig()"></div>
+<div><label>C = and above</label><input id="cfgC" type="number" oninput="saveConfig()"></div>
+<div><label>D = and above (below = E)</label><input id="cfgD" type="number" oninput="saveConfig()"></div>
 </div>
 <label>Assessment Column 1</label><input id="cfgCol1" oninput="saveConfig()">
 <label>Assessment Column 2</label><input id="cfgCol2" oninput="saveConfig()">
@@ -77,25 +68,20 @@ th{background:#f8fafc;padding:8px;border:1px solid #ddd;text-align:left;font-siz
 <label>Class Teacher Remark</label><textarea id="cfgRemark1" rows="2" oninput="saveConfig()"></textarea>
 <label>Head Teacher Remark</label><textarea id="cfgRemark2" rows="2" oninput="saveConfig()"></textarea>
 </div>
-
 <div class="page">
 <div class="school"><h2>BWIJANGA SECONDARY SCHOOL</h2><div class="contact-space" id="showContacts">Contacts space - to be filled</div></div>
 <div class="head"><div class="logo-space">SCHOOL<br>BADGE<br>SPACE</div><div><b style="font-size:18px">BWIJANGA SECONDARY SCHOOL</b><br><small>Excellence • Discipline • God First</small></div></div>
 <div class="title" id="blueTitle">ACADEMIC REPORT FORM</div>
-<div class="info">
-<div class="photo" id="photoBox"><svg width="110" height="130" viewBox="0 0 110 130"><ellipse cx="55" cy="45" rx="22" ry="28" fill="#9aa8b5"/><path d="M5 130 Q55 70 105 130 Z" fill="#9aa8b5"/></svg></div>
-<div class="info-text"><b>NAME: <span id="rName">-</span></b><br>ADMNO: <span id="rAdm">-</span><br>CLASS: <span id="rClass">-</span><br><small id="prevTermLabel" style="color:#666"></small></div>
-<div class="chart-box"><small>Subject Performance - <b>Student vs WHOLE CLASS Average (All Streams)</b></small><canvas id="lineChart" width="320" height="130"></canvas><div class="legend"><span><span class="dot" style="background:#4caf50"></span> Student</span><span><span class="dot" style="background:#94a3b8"></span> Whole Class Avg (S.4 A+B+C)</span></div></div>
-</div>
+<div class="info"><div class="photo" id="photoBox"><svg width="110" height="130" viewBox="0 0 110 130"><ellipse cx="55" cy="45" rx="22" ry="28" fill="#9aa8b5"/><path d="M5 130 Q55 70 105 130 Z" fill="#9aa8b5"/></svg></div>
+<div class="info-text"><b>NAME: <span id="rName">-</span></b><br>ADMNO: <span id="rAdm">-</span><br>CLASS: <span id="rClass">-</span><br><small id="prevTermLabel"></small></div>
+<div class="chart-box"><small>Subject Performance - <b>Student vs WHOLE CLASS Average (All Streams)</b></small><canvas id="lineChart" width="320" height="130"></canvas><div class="legend"><span><span class="dot" style="background:#4caf50"></span> Student</span><span><span class="dot" style="background:#94a3b8"></span> Whole Class Avg</span></div></div></div>
 <div class="stats"><div><small>Total Marks</small><b><span id="rTotal">0</span>/<span id="rTotalMax">900</span></b> <span id="rDevTotal">-</span></div><div><small>Average Score</small><b><span id="rAvg">0</span>%</b> <span id="rDevAvg">-</span></div><div><small>Result</small><b id="rResult">-</b></div></div>
 <div class="table-wrap"><table>
 <tr><th rowspan="2">SUBJECT</th><th rowspan="2" class="center" id="thCol1">END OF YEAR 2025<br>x/40</th><th rowspan="2" class="center" id="thCol2">PRE-REGISTRATION<br>x/40</th><th rowspan="2" class="center" id="thCol3">AVERAGE SCORE (A.O.I)<br>x/20</th><th colspan="3" class="center">S.4 Reports</th><th rowspan="2">COMMENT</th><th rowspan="2">TEACHER</th></tr>
 <tr><th class="center">MARKS</th><th class="center">DEV.</th><th class="center">GR.</th></tr>
 <tbody id="subjectBody"></tbody></table></div>
-<div class="bottom">
-<div><b><span id="perfName">Student</span>'s Performance over Time</b><div class="chart-wrap"><div class="y-axis"><span>100</span><span>50</span><span>0</span></div><div class="chart-area"><div class="bars" id="historyBars"></div><div class="x-labels" id="historyLabels"></div></div></div></div>
-<div class="remarks"><h4>Remarks</h4><b>Class Teacher</b><p id="showRemark1"></p><br><b>Head Teacher - BWIJANGA S.S.</b><p id="showRemark2"></p></div>
-</div>
+<div class="bottom"><div><b><span id="perfName">Student</span>'s Performance over Time</b><div class="chart-wrap"><div class="y-axis"><span>100</span><span>50</span><span>0</span></div><div class="chart-area"><div class="bars" id="historyBars"></div><div class="x-labels" id="historyLabels"></div></div></div></div>
+<div class="remarks"><h4>Remarks</h4><b>Class Teacher</b><p id="showRemark1"></p><br><b>Head Teacher - BWIJANGA S.S.</b><p id="showRemark2"></p></div></div>
 <div class="remarks-layout" style="margin-top:6px"><div></div><div class="sig-col"><h4>Signature</h4><div class="sig-img">✍️</div><div class="stamp"><div class="top">THE HEADTEACHER<br>BWIJANGA SECONDARY SCHOOL</div><div class="date" id="stampDate">01 MAY 2026</div><div class="box">P.O. Box, MASINDI</div></div></div></div>
 <div class="dates"><h3>SCHOOL DATES</h3><p>Closing Date: <span id="showClose">01/05/2026</span><br>Opening Date: <span id="showOpen">25/05/2026</span></p></div>
 <div class="qr-row"><div class="qr-box">📷<br>QR CODE<br>Scan Me</div><p style="font-size:14px;line-height:1.5">Scan to access your interactive student profile on<br><b>Zeraki Analytics.</b> Your username: <b id="qrUser">-</b></p></div>
@@ -105,131 +91,25 @@ th{background:#f8fafc;padding:8px;border:1px solid #ddd;text-align:left;font-siz
 let defaultConfig={cls:"SENIOR 4",stream:"C",reportType:"S.4 REPORTS",term:"2026 TERM 1",prevTerm:"2025 TERM 3",contacts:"",col1:"END OF YEAR 2025",col2:"PRE-REGISTRATION",col3:"AVERAGE SCORE (A.O.I)",close:"2026-05-01",open:"2026-05-25",gradeA:80,gradeB:70,gradeC:60,gradeD:50,remark1:"Has attained a satisfactory level of competency and can apply knowledge in common real-life situations, but still needs guidance for more complex tasks.",remark2:"Good performance, you need to work harder for the best next year."};
 let config=JSON.parse(localStorage.getItem('bwijanga_report_config')||'null')||defaultConfig;
 function toggleEdit(){let p=document.getElementById("editPanel"); p.style.display=p.style.display=="none"?"block":"none";}
-function saveConfig(){
- config={cls:document.getElementById("cfgClass").value||"SENIOR 4",stream:document.getElementById("cfgStream").value||"C",reportType:document.getElementById("cfgReportType").value,term:document.getElementById("cfgTerm").value||"2026 TERM 1",prevTerm:document.getElementById("cfgPrevTerm").value||"2025 TERM 3",contacts:document.getElementById("cfgContacts").value,col1:document.getElementById("cfgCol1").value||"END OF YEAR 2025",col2:document.getElementById("cfgCol2").value||"PRE-REGISTRATION",col3:document.getElementById("cfgCol3").value||"AVERAGE SCORE (A.O.I)",close:document.getElementById("cfgClose").value,open:document.getElementById("cfgOpen").value,gradeA:+document.getElementById("cfgA").value||80,gradeB:+document.getElementById("cfgB").value||70,gradeC:+document.getElementById("cfgC").value||60,gradeD:+document.getElementById("cfgD").value||50,remark1:document.getElementById("cfgRemark1").value,remark2:document.getElementById("cfgRemark2").value};
- localStorage.setItem('bwijanga_report_config',JSON.stringify(config)); applyConfig(); render();
-}
-function applyConfig(){
- document.getElementById("cfgClass").value=config.cls; document.getElementById("cfgStream").value=config.stream; document.getElementById("cfgReportType").value=config.reportType; document.getElementById("cfgTerm").value=config.term; document.getElementById("cfgPrevTerm").value=config.prevTerm; document.getElementById("cfgContacts").value=config.contacts; document.getElementById("cfgCol1").value=config.col1; document.getElementById("cfgCol2").value=config.col2; document.getElementById("cfgCol3").value=config.col3; document.getElementById("cfgClose").value=config.close; document.getElementById("cfgOpen").value=config.open; document.getElementById("cfgA").value=config.gradeA; document.getElementById("cfgB").value=config.gradeB; document.getElementById("cfgC").value=config.gradeC; document.getElementById("cfgD").value=config.gradeD; document.getElementById("cfgRemark1").value=config.remark1; document.getElementById("cfgRemark2").value=config.remark2;
- // BLUE TITLE: ACADEMIC REPORT FORM - SENIOR 4 C - S.4 REPORTS - (2026 TERM 1)
- let title="ACADEMIC REPORT FORM - "+config.cls;
- if(config.stream) title+=" "+config.stream;
- if(config.reportType) title+=" - "+config.reportType;
- if(config.term) title+=" - ("+config.term+")";
- document.getElementById("blueTitle").innerText=title;
- document.getElementById("thCol1").innerHTML=config.col1+"<br>x/40"; document.getElementById("thCol2").innerHTML=config.col2+"<br>x/40"; document.getElementById("thCol3").innerHTML=config.col3+"<br>x/20";
- document.getElementById("showContacts").innerText=config.contacts||"Contacts space - to be filled";
- document.getElementById("showRemark1").innerText=config.remark1; document.getElementById("showRemark2").innerText=config.remark2;
- document.getElementById("showClose").innerText=config.close||"-"; document.getElementById("showOpen").innerText=config.open||"-"; document.getElementById("stampDate").innerText=config.close?config.close.split("-").reverse().join(" / "):"-";
- document.getElementById("prevTermLabel").innerText="Deviation vs "+config.prevTerm;
-}
-// STUDENTS - note classLevel = SENIOR 4 for ALL streams, so graph uses WHOLE CLASS
-let students=[
- {name:"Kusemererwa Samuel",id:"1817",cls:"4 C",classLevel:"SENIOR 4",photo:""},
- {name:"Anna Nansubuga",id:"BW-27002",cls:"4 C",classLevel:"SENIOR 4",photo:""},
- {name:"Moses Okello",id:"BW-27003",cls:"4 A",classLevel:"SENIOR 4",photo:""},
- {name:"Grace Atim",id:"BW-27004",cls:"4 B",classLevel:"SENIOR 4",photo:""}
-];
-// CURRENT TERM marks + PREVIOUS TERM marks (from last report card)
+function saveConfig(){ config={cls:document.getElementById("cfgClass").value||"SENIOR 4",stream:document.getElementById("cfgStream").value||"C",reportType:document.getElementById("cfgReportType").value,term:document.getElementById("cfgTerm").value||"2026 TERM 1",prevTerm:document.getElementById("cfgPrevTerm").value||"2025 TERM 3",contacts:document.getElementById("cfgContacts").value,col1:document.getElementById("cfgCol1").value||"END OF YEAR 2025",col2:document.getElementById("cfgCol2").value||"PRE-REGISTRATION",col3:document.getElementById("cfgCol3").value||"AVERAGE SCORE (A.O.I)",close:document.getElementById("cfgClose").value,open:document.getElementById("cfgOpen").value,gradeA:+document.getElementById("cfgA").value||80,gradeB:+document.getElementById("cfgB").value||70,gradeC:+document.getElementById("cfgC").value||60,gradeD:+document.getElementById("cfgD").value||50,remark1:document.getElementById("cfgRemark1").value,remark2:document.getElementById("cfgRemark2").value}; localStorage.setItem('bwijanga_report_config',JSON.stringify(config)); applyConfig(); render(); }
+function applyConfig(){ document.getElementById("cfgClass").value=config.cls; document.getElementById("cfgStream").value=config.stream; document.getElementById("cfgReportType").value=config.reportType; document.getElementById("cfgTerm").value=config.term; document.getElementById("cfgPrevTerm").value=config.prevTerm; document.getElementById("cfgContacts").value=config.contacts; document.getElementById("cfgCol1").value=config.col1; document.getElementById("cfgCol2").value=config.col2; document.getElementById("cfgCol3").value=config.col3; document.getElementById("cfgClose").value=config.close; document.getElementById("cfgOpen").value=config.open; document.getElementById("cfgA").value=config.gradeA; document.getElementById("cfgB").value=config.gradeB; document.getElementById("cfgC").value=config.gradeC; document.getElementById("cfgD").value=config.gradeD; document.getElementById("cfgRemark1").value=config.remark1; document.getElementById("cfgRemark2").value=config.remark2; let title="ACADEMIC REPORT FORM - "+config.cls; if(config.stream) title+=" "+config.stream; if(config.reportType) title+=" - "+config.reportType; if(config.term) title+=" - ("+config.term+")"; document.getElementById("blueTitle").innerText=title; document.getElementById("thCol1").innerHTML=config.col1+"<br>x/40"; document.getElementById("thCol2").innerHTML=config.col2+"<br>x/40"; document.getElementById("thCol3").innerHTML=config.col3+"<br>x/20"; document.getElementById("showContacts").innerText=config.contacts||"Contacts space - to be filled"; document.getElementById("showRemark1").innerText=config.remark1; document.getElementById("showRemark2").innerText=config.remark2; document.getElementById("showClose").innerText=config.close||"-"; document.getElementById("showOpen").innerText=config.open||"-"; document.getElementById("stampDate").innerText=config.close?config.close.split("-").reverse().join(" / "):"-"; document.getElementById("prevTermLabel").innerText="Deviation vs "+config.prevTerm; }
+let students=[{name:"Kusemererwa Samuel",id:"1817",cls:"4 C",classLevel:"SENIOR 4",photo:""},{name:"Anna Nansubuga",id:"BW-27002",cls:"4 C",classLevel:"SENIOR 4",photo:""},{name:"Moses Okello",id:"BW-27003",cls:"4 A",classLevel:"SENIOR 4",photo:""},{name:"Grace Atim",id:"BW-27004",cls:"4 B",classLevel:"SENIOR 4",photo:""}];
 let marksByStudent={
- "1817":{
-   current:[{name:"English",short:"ENGL",eoy:26,pre:16,avg:16,mark:58.8,teacher:"Tino Juliet"},{name:"Mathematics",short:"MTC",eoy:25,pre:22,avg:20,mark:67.2,teacher:"Isingoma Gabriel"},{name:"Biology",short:"BIO",eoy:34,pre:26,avg:13,mark:73.8,teacher:"Isaut Sylas"},{name:"Physics",short:"PHY",eoy:31,pre:16,avg:14,mark:61.2,teacher:"Passy Byamaka"},{name:"Chemistry",short:"CHEM",eoy:35,pre:28,avg:14,mark:77.8,teacher:"Kyalisima John"},{name:"Geography",short:"GEO",eoy:28,pre:13,avg:13,mark:54.6,teacher:"Bwire Derick Malibo"},{name:"C.R.E",short:"CRE",eoy:27,pre:30,avg:20,mark:76.4,teacher:"Komuhendo Rita"},{name:"Art and Design",short:"ART",eoy:30,pre:30,avg:17,mark:76.6,teacher:"Kiiza B. Fred"},{name:"H and P.E",short:"HPE",eoy:27,pre:30,avg:18,mark:74.8,teacher:"Bwambale Gad"}],
-   prev:{English:55,Mathematics:60,Biology:68,Physics:58,Chemistry:70,Geography:50,"C.R.E":72,"Art and Design":71,"H and P.E":70},
-   history:[55,62,69]
- },
- "BW-27002":{
-   current:[{name:"English",short:"ENGL",eoy:20,pre:18,avg:15,mark:62,teacher:"Tino Juliet"},{name:"Mathematics",short:"MTC",eoy:22,pre:20,avg:16,mark:58,teacher:"Isingoma Gabriel"},{name:"Biology",short:"BIO",eoy:28,pre:24,avg:14,mark:66,teacher:"Isaut Sylas"},{name:"Physics",short:"PHY",eoy:24,pre:18,avg:12,mark:54,teacher:"Passy Byamaka"},{name:"Chemistry",short:"CHEM",eoy:30,pre:25,avg:15,mark:70,teacher:"Kyalisima John"},{name:"Geography",short:"GEO",eoy:25,pre:15,avg:12,mark:52,teacher:"Bwire Derick Malibo"},{name:"C.R.E",short:"CRE",eoy:26,pre:28,avg:18,mark:72,teacher:"Komuhendo Rita"},{name:"Art and Design",short:"ART",eoy:28,pre:26,avg:16,mark:70,teacher:"Kiiza B. Fred"},{name:"H and P.E",short:"HPE",eoy:24,pre:26,avg:16,mark:66,teacher:"Bwambale Gad"}],
-   prev:{English:58,Mathematics:55,Biology:60,Physics:50,Chemistry:65,Geography:48,"C.R.E":68,"Art and Design":66,"H and P.E":62},
-   history:[52,58,61]
- },
- "BW-27003":{
-   current:[{name:"English",short:"ENGL",eoy:18,pre:14,avg:12,mark:44,teacher:"Tino Juliet"},{name:"Mathematics",short:"MTC",eoy:20,pre:18,avg:14,mark:52,teacher:"Isingoma Gabriel"},{name:"Biology",short:"BIO",eoy:22,pre:20,avg:12,mark:54,teacher:"Isaut Sylas"},{name:"Physics",short:"PHY",eoy:20,pre:16,avg:12,mark:48,teacher:"Passy Byamaka"},{name:"Chemistry",short:"CHEM",eoy:24,pre:20,avg:12,mark:56,teacher:"Kyalisima John"},{name:"Geography",short:"GEO",eoy:20,pre:12,avg:10,mark:42,teacher:"Bwire Derick Malibo"},{name:"C.R.E",short:"CRE",eoy:22,pre:24,avg:16,mark:62,teacher:"Komuhendo Rita"},{name:"Art and Design",short:"ART",eoy:24,pre:22,avg:14,mark:60,teacher:"Kiiza B. Fred"},{name:"H and P.E",short:"HPE",eoy:20,pre:22,avg:14,mark:56,teacher:"Bwambale Gad"}],
-   prev:{English:40,Mathematics:48,Biology:50,Physics:44,Chemistry:52,Geography:40,"C.R.E":58,"Art and Design":56,"H and P.E":52},
-   history:[46,48,53]
- },
- "BW-27004":{
-   current:[{name:"English",short:"ENGL",eoy:30,pre:28,avg:18,mark:76,teacher:"Tino Juliet"},{name:"Mathematics",short:"MTC",eoy:32,pre:28,avg:18,mark:78,teacher:"Isingoma Gabriel"},{name:"Biology",short:"BIO",eoy:34,pre:30,avg:16,mark:80,teacher:"Isaut Sylas"},{name:"Physics",short:"PHY",eoy:30,pre:26,avg:16,mark:72,teacher:"Passy Byamaka"},{name:"Chemistry",short:"CHEM",eoy:36,pre:30,avg:16,mark:82,teacher:"Kyalisima John"},{name:"Geography",short:"GEO",eoy:30,pre:26,avg:16,mark:72,teacher:"Bwire Derick Malibo"},{name:"C.R.E",short:"CRE",eoy:32,pre:32,avg:18,mark:82,teacher:"Komuhendo Rita"},{name:"Art and Design",short:"ART",eoy:34,pre:32,avg:18,mark:84,teacher:"Kiiza B. Fred"},{name:"H and P.E",short:"HPE",eoy:30,pre:32,avg:18,mark:80,teacher:"Bwambale Gad"}],
-   prev:{English:72,Mathematics:74,Biology:76,Physics:68,Chemistry:78,Geography:68,"C.R.E":78,"Art and Design":80,"H and P.E":76},
-   history:[70,74,78]
- }
+"1817":{current:[{name:"English",short:"ENGL",eoy:26,pre:16,avg:16,mark:58.8,teacher:"Tino Juliet"},{name:"Mathematics",short:"MTC",eoy:25,pre:22,avg:20,mark:67.2,teacher:"Isingoma Gabriel"},{name:"Biology",short:"BIO",eoy:34,pre:26,avg:13,mark:73.8,teacher:"Isaut Sylas"},{name:"Physics",short:"PHY",eoy:31,pre:16,avg:14,mark:61.2,teacher:"Passy Byamaka"},{name:"Chemistry",short:"CHEM",eoy:35,pre:28,avg:14,mark:77.8,teacher:"Kyalisima John"},{name:"Geography",short:"GEO",eoy:28,pre:13,avg:13,mark:54.6,teacher:"Bwire Derick Malibo"},{name:"C.R.E",short:"CRE",eoy:27,pre:30,avg:20,mark:76.4,teacher:"Komuhendo Rita"},{name:"Art and Design",short:"ART",eoy:30,pre:30,avg:17,mark:76.6,teacher:"Kiiza B. Fred"},{name:"H and P.E",short:"HPE",eoy:27,pre:30,avg:18,mark:74.8,teacher:"Bwambale Gad"}],prev:{English:55,Mathematics:60,Biology:68,Physics:58,Chemistry:70,Geography:50,"C.R.E":72,"Art and Design":71,"H and P.E":70},history:[55,62,69]},
+"BW-27002":{current:[{name:"English",short:"ENGL",eoy:20,pre:18,avg:15,mark:62,teacher:"Tino Juliet"},{name:"Mathematics",short:"MTC",eoy:22,pre:20,avg:16,mark:58,teacher:"Isingoma Gabriel"},{name:"Biology",short:"BIO",eoy:28,pre:24,avg:14,mark:66,teacher:"Isaut Sylas"},{name:"Physics",short:"PHY",eoy:24,pre:18,avg:12,mark:54,teacher:"Passy Byamaka"},{name:"Chemistry",short:"CHEM",eoy:30,pre:25,avg:15,mark:70,teacher:"Kyalisima John"},{name:"Geography",short:"GEO",eoy:25,pre:15,avg:12,mark:52,teacher:"Bwire Derick Malibo"},{name:"C.R.E",short:"CRE",eoy:26,pre:28,avg:18,mark:72,teacher:"Komuhendo Rita"},{name:"Art and Design",short:"ART",eoy:28,pre:26,avg:16,mark:70,teacher:"Kiiza B. Fred"},{name:"H and P.E",short:"HPE",eoy:24,pre:26,avg:16,mark:66,teacher:"Bwambale Gad"}],prev:{English:58,Mathematics:55,Biology:60,Physics:50,Chemistry:65,Geography:48,"C.R.E":68,"Art and Design":66,"H and P.E":62},history:[52,58,61]},
+"BW-27003":{current:[{name:"English",short:"ENGL",eoy:18,pre:14,avg:12,mark:44,teacher:"Tino Juliet"},{name:"Mathematics",short:"MTC",eoy:20,pre:18,avg:14,mark:52,teacher:"Isingoma Gabriel"},{name:"Biology",short:"BIO",eoy:22,pre:20,avg:12,mark:54,teacher:"Isaut Sylas"},{name:"Physics",short:"PHY",eoy:20,pre:16,avg:12,mark:48,teacher:"Passy Byamaka"},{name:"Chemistry",short:"CHEM",eoy:24,pre:20,avg:12,mark:56,teacher:"Kyalisima John"},{name:"Geography",short:"GEO",eoy:20,pre:12,avg:10,mark:42,teacher:"Bwire Derick Malibo"},{name:"C.R.E",short:"CRE",eoy:22,pre:24,avg:16,mark:62,teacher:"Komuhendo Rita"},{name:"Art and Design",short:"ART",eoy:24,pre:22,avg:14,mark:60,teacher:"Kiiza B. Fred"},{name:"H and P.E",short:"HPE",eoy:20,pre:22,avg:14,mark:56,teacher:"Bwambale Gad"}],prev:{English:40,Mathematics:48,Biology:50,Physics:44,Chemistry:52,Geography:40,"C.R.E":58,"Art and Design":56,"H and P.E":52},history:[46,48,53]},
+"BW-27004":{current:[{name:"English",short:"ENGL",eoy:30,pre:28,avg:18,mark:76,teacher:"Tino Juliet"},{name:"Mathematics",short:"MTC",eoy:32,pre:28,avg:18,mark:78,teacher:"Isingoma Gabriel"},{name:"Biology",short:"BIO",eoy:34,pre:30,avg:16,mark:80,teacher:"Isaut Sylas"},{name:"Physics",short:"PHY",eoy:30,pre:26,avg:16,mark:72,teacher:"Passy Byamaka"},{name:"Chemistry",short:"CHEM",eoy:36,pre:30,avg:16,mark:82,teacher:"Kyalisima John"},{name:"Geography",short:"GEO",eoy:30,pre:26,avg:16,mark:72,teacher:"Bwire Derick Malibo"},{name:"C.R.E",short:"CRE",eoy:32,pre:32,avg:18,mark:82,teacher:"Komuhendo Rita"},{name:"Art and Design",short:"ART",eoy:34,pre:32,avg:18,mark:84,teacher:"Kiiza B. Fred"},{name:"H and P.E",short:"HPE",eoy:30,pre:32,avg:18,mark:80,teacher:"Bwambale Gad"}],prev:{English:72,Mathematics:74,Biology:76,Physics:68,Chemistry:78,Geography:68,"C.R.E":78,"Art and Design":80,"H and P.E":76},history:[70,74,78]}
 };
-let currentStudentId="1817";
-let subjects=[];
-let classAvgMap={};
-// ADMIN GRADE - uses admin's thresholds
+let currentStudentId="1817"; let subjects=[]; let classAvgMap={};
 function gradeFor(m){ if(m>=config.gradeA)return"A"; if(m>=config.gradeB)return"B"; if(m>=config.gradeC)return"C"; if(m>=config.gradeD)return"D"; return "E"; }
 function commentFor(m){ if(m>=config.gradeB)return"Outstanding Performance"; if(m>=config.gradeC)return"Satisfactory Performance"; if(m>=config.gradeD)return"Basic Performance"; return "Needs Improvement"; }
-// WHOLE CLASS AVERAGE - all students with same classLevel (SENIOR 4), NOT just stream C
-function calcClassAvg(){
- classAvgMap={};
- let allIds=Object.keys(marksByStudent);
- let sample=marksByStudent[allIds[0]].current;
- sample.forEach((subj,idx)=>{
-   let sum=0, count=0;
-   allIds.forEach(id=>{
-     let st=students.find(s=>s.id===id);
-     if(st && st.classLevel===config.cls){ // SENIOR 4 = A+B+C together
-       let m=marksByStudent[id].current[idx];
-       if(m){ sum+=m.mark; count++; }
-     }
-   });
-   classAvgMap[subj.name]=count?Math.round(sum/count*10)/10:0;
- });
-}
-function render(){
- calcClassAvg();
- let body=document.getElementById("subjectBody"); body.innerHTML='';
- let total=0, prevTotal=0;
- let data=marksByStudent[currentStudentId];
- subjects=data.current;
- subjects.forEach(s=>{
-   let prev=data.prev[s.name]||0;
-   let dev=s.mark-prev;
-   let devText=dev>0?`<span class="up">▲ +${dev.toFixed(1)}</span>`:dev<0?`<span class="down">▼ ${dev.toFixed(1)}</span>`:`<span class="same">0 →</span>`;
-   total+=s.mark; prevTotal+=prev;
-   body.innerHTML+=`<tr><td>${s.name}</td><td class="center">${s.eoy}</td><td class="center">${s.pre}</td><td class="center">${s.avg}</td><td class="center">${s.mark}%</td><td class="center">${devText}</td><td class="center">${gradeFor(s.mark)}</td><td>${commentFor(s.mark)}</td><td>${s.teacher}</td></tr>`;
- });
- let avg=total/subjects.length; let prevAvg=prevTotal/subjects.length;
- let devTotal=total-prevTotal; let devAvg=avg-prevAvg;
- document.getElementById("rTotal").innerText=Math.round(total);
- document.getElementById("rTotalMax").innerText=subjects.length*100;
- document.getElementById("rAvg").innerText=Math.round(avg);
- document.getElementById("rDevTotal").innerHTML=devTotal>0?`<span class="up">▲ +${Math.round(devTotal)}</span>`:devTotal<0?`<span class="down">▼ ${Math.round(devTotal)}</span>`:`<span class="same">0 →</span>`;
- document.getElementById("rDevAvg").innerHTML=devAvg>0?`<span class="up">▲ +${devAvg.toFixed(1)}</span>`:devAvg<0?`<span class="down">▼ ${devAvg.toFixed(1)}</span>`:`<span class="same">0 →</span>`;
- document.getElementById("rResult").innerText= avg>=65?1:avg>=55?2:avg>=45?3:4;
- // History bars - past terms
- let hist=data.history||[0,0,Math.round(avg)];
- document.getElementById("historyBars").innerHTML=hist.map(v=>`<div class="bar2" style="height:${v}%"></div>`).join("");
- document.getElementById("historyLabels").innerHTML=`<div>${config.prevTerm}</div><div>Prev</div><div>${config.term}</div>`;
- drawLine();
-}
-function drawLine(){
- let c=document.getElementById("lineChart"); let ctx=c.getContext("2d"); ctx.clearRect(0,0,c.width,c.height);
- function getY(v){return c.height-22-((v-40)/40)*(c.height-50)} function getX(i){return 30+i*(c.width-50)/(subjects.length-1)}
- ctx.fillStyle="#999"; ctx.font="11px Arial"; ctx.textAlign="right";
- ctx.fillText("80",24,getY(80)+4); ctx.fillText("60",24,getY(60)+4); ctx.fillText("40",24,getY(40)+4);
- ctx.beginPath(); ctx.strokeStyle="#94a3b8"; ctx.lineWidth=1.5; ctx.setLineDash([4,3]);
- subjects.forEach((s,i)=>{ let av=classAvgMap[s.name]||0; if(i==0)ctx.moveTo(getX(i),getY(av)); else ctx.lineTo(getX(i),getY(av)); }); ctx.stroke(); ctx.setLineDash([]);
- subjects.forEach((s,i)=>{ ctx.fillStyle="#94a3b8"; ctx.beginPath(); ctx.arc(getX(i),getY(classAvgMap[s.name]||0),3,0,7); ctx.fill(); });
- ctx.beginPath(); ctx.moveTo(getX(0),getY(40)); subjects.forEach((s,i)=>{ctx.lineTo(getX(i),getY(s.mark))}); ctx.lineTo(getX(subjects.length-1),getY(40)); ctx.closePath(); ctx.fillStyle="rgba(180,180,180,0.25)"; ctx.fill();
- ctx.beginPath(); ctx.strokeStyle="#7bc47f"; ctx.lineWidth=2.5; subjects.forEach((s,i)=>{ if(i==0)ctx.moveTo(getX(i),getY(s.mark)); else ctx.lineTo(getX(i),getY(s.mark)); }); ctx.stroke();
- subjects.forEach((s,i)=>{ ctx.fillStyle="#4caf50"; ctx.beginPath(); ctx.arc(getX(i),getY(s.mark),4,0,7); ctx.fill(); });
- ctx.fillStyle="#999"; ctx.font="9px Arial"; ctx.textAlign="center"; subjects.forEach((s,i)=>{ ctx.save(); ctx.translate(getX(i),c.height-6); ctx.rotate(-0.6); ctx.fillText(s.short,0,0); ctx.restore(); });
-}
-function loadStudent(){
- let s=students[document.getElementById("studentSelect").value]||students[0];
- currentStudentId=s.id;
- document.getElementById("rName").innerText=s.name; document.getElementById("rAdm").innerText=s.id; document.getElementById("rClass").innerText=s.cls;
- document.getElementById("perfName").innerText=s.name; document.getElementById("qrUser").innerText=s.id+"@bwijanga";
- if(s.photo) document.getElementById("photoBox").innerHTML=`<img src="${s.photo}">`;
- render();
-}
+function calcClassAvg(){ classAvgMap={}; let allIds=Object.keys(marksByStudent); let sample=marksByStudent[allIds[0]].current; sample.forEach((subj,idx)=>{ let sum=0,count=0; allIds.forEach(id=>{ let st=students.find(s=>s.id===id); if(st && st.classLevel===config.cls){ let m=marksByStudent[id].current[idx]; if(m){sum+=m.mark;count++;} } }); classAvgMap[subj.name]=count?Math.round(sum/count*10)/10:0; }); }
+function render(){ calcClassAvg(); let body=document.getElementById("subjectBody"); body.innerHTML=''; let total=0,prevTotal=0; let data=marksByStudent[currentStudentId]; subjects=data.current; subjects.forEach(s=>{ let prev=data.prev[s.name]||0; let dev=s.mark-prev; let devText=dev>0?`<span class="up">▲ +${dev.toFixed(1)}</span>`:dev<0?`<span class="down">▼ ${dev.toFixed(1)}</span>`:`<span class="same">0 →</span>`; total+=s.mark; prevTotal+=prev; body.innerHTML+=`<tr><td>${s.name}</td><td class="center">${s.eoy}</td><td class="center">${s.pre}</td><td class="center">${s.avg}</td><td class="center">${s.mark}%</td><td class="center">${devText}</td><td class="center">${gradeFor(s.mark)}</td><td>${commentFor(s.mark)}</td><td>${s.teacher}</td></tr>`; }); let avg=total/subjects.length; let prevAvg=prevTotal/subjects.length; let devTotal=total-prevTotal; let devAvg=avg-prevAvg; document.getElementById("rTotal").innerText=Math.round(total); document.getElementById("rTotalMax").innerText=subjects.length*100; document.getElementById("rAvg").innerText=Math.round(avg); document.getElementById("rDevTotal").innerHTML=devTotal>0?`<span class="up">▲ +${Math.round(devTotal)}</span>`:devTotal<0?`<span class="down">▼ ${Math.round(devTotal)}</span>`:`<span class="same">0 →</span>`; document.getElementById("rDevAvg").innerHTML=devAvg>0?`<span class="up">▲ +${devAvg.toFixed(1)}</span>`:devAvg<0?`<span class="down">▼ ${devAvg.toFixed(1)}</span>`:`<span class="same">0 →</span>`; document.getElementById("rResult").innerText=avg>=65?1:avg>=55?2:avg>=45?3:4; let hist=data.history||[0,0,Math.round(avg)]; document.getElementById("historyBars").innerHTML=hist.map(v=>`<div class="bar2" style="height:${v}%"></div>`).join(""); document.getElementById("historyLabels").innerHTML=`<div>${config.prevTerm}</div><div>Prev</div><div>${config.term}</div>`; drawLine(); }
+function drawLine(){ let c=document.getElementById("lineChart"); let ctx=c.getContext("2d"); ctx.clearRect(0,0,c.width,c.height); function getY(v){return c.height-22-((v-40)/40)*(c.height-50)} function getX(i){return 30+i*(c.width-50)/(subjects.length-1)} ctx.fillStyle="#999"; ctx.font="11px Arial"; ctx.textAlign="right"; ctx.fillText("80",24,getY(80)+4); ctx.fillText("60",24,getY(60)+4); ctx.fillText("40",24,getY(40)+4); ctx.beginPath(); ctx.strokeStyle="#94a3b8"; ctx.lineWidth=1.5; ctx.setLineDash([4,3]); subjects.forEach((s,i)=>{ let av=classAvgMap[s.name]||0; if(i==0)ctx.moveTo(getX(i),getY(av)); else ctx.lineTo(getX(i),getY(av)); }); ctx.stroke(); ctx.setLineDash([]); subjects.forEach((s,i)=>{ ctx.fillStyle="#94a3b8"; ctx.beginPath(); ctx.arc(getX(i),getY(classAvgMap[s.name]||0),3,0,7); ctx.fill(); }); ctx.beginPath(); ctx.moveTo(getX(0),getY(40)); subjects.forEach((s,i)=>{ctx.lineTo(getX(i),getY(s.mark))}); ctx.lineTo(getX(subjects.length-1),getY(40)); ctx.closePath(); ctx.fillStyle="rgba(180,180,180,0.25)"; ctx.fill(); ctx.beginPath(); ctx.strokeStyle="#7bc47f"; ctx.lineWidth=2.5; subjects.forEach((s,i)=>{ if(i==0)ctx.moveTo(getX(i),getY(s.mark)); else ctx.lineTo(getX(i),getY(s.mark)); }); ctx.stroke(); subjects.forEach((s,i)=>{ ctx.fillStyle="#4caf50"; ctx.beginPath(); ctx.arc(getX(i),getY(s.mark),4,0,7); ctx.fill(); }); ctx.fillStyle="#999"; ctx.font="9px Arial"; ctx.textAlign="center"; subjects.forEach((s,i)=>{ ctx.save(); ctx.translate(getX(i),c.height-6); ctx.rotate(-0.6); ctx.fillText(s.short,0,0); ctx.restore(); }); }
+function loadStudent(){ let s=students[document.getElementById("studentSelect").value]||students[0]; currentStudentId=s.id; document.getElementById("rName").innerText=s.name; document.getElementById("rAdm").innerText=s.id; document.getElementById("rClass").innerText=s.cls; document.getElementById("perfName").innerText=s.name; document.getElementById("qrUser").innerText=s.id+"@bwijanga"; if(s.photo) document.getElementById("photoBox").innerHTML=`<img src="${s.photo}">`; render(); }
 let sel=document.getElementById("studentSelect"); students.forEach((s,i)=>{ sel.innerHTML+=`<option value="${i}">${s.name} - ${s.id} - ${s.cls}</option>`; });
 applyConfig(); loadStudent();
-if(window.location.search.includes("student=1")){
- document.getElementById("settingsBtn").style.display="none";
- document.getElementById("editPanel").style.display="none";
-}
+if(window.location.search.includes("student=1")){ document.getElementById("settingsBtn").style.display="none"; document.getElementById("editPanel").style.display="none"; }
 </script>
 </body>
 </html>
