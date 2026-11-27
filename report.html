@@ -1,53 +1,210 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Report Card</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report Card - BWIJANGA S.S.</title>
 <style>
-body{font-family:Arial;padding:15px;background:white}
-.header{text-align:center}
-.photo{width:110px;height:130px;border:2px solid #000;float:right;display:flex;align-items:center;justify-content:center;font-size:12px}
-table{width:100%;border-collapse:collapse;margin-top:10px}
-th,td{border:1px solid #000;padding:6px;text-align:center}
-input{width:70px;padding:6px;text-align:center}
-button{background:#1e40af;color:white;padding:12px 20px;border:none;border-radius:8px;font-size:16px}
-@media print{button,.noprint{display:none}}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#eee;padding:10px}
+.topbar{display:flex;justify-content:space-between;gap:8px;max-width:900px;margin:0 auto 10px;flex-wrap:wrap}
+button{padding:12px 16px;border:none;border-radius:10px;font-weight:bold;cursor:pointer}
+.btn-print{background:#0a1930;color:#fff}.btn-gold{background:#f5b301}.btn-green{background:#16a34a;color:#fff}
+select,input,textarea{padding:10px;border:1px solid #ddd;border-radius:8px}
+.edit-panel{background:#fffbe6;border:2px dashed #f5b301;max-width:900px;margin:0 auto 10px;padding:14px;border-radius:10px}
+.edit-panel h3{margin-bottom:8px}.edit-panel label{font-size:12px;font-weight:bold;display:block;margin-top:8px}
+.edit-panel input{width:100%;margin-top:4px}
+.edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.edit-grid{grid-template-columns:1fr}}
+.page{background:#fff;max-width:900px;margin:0 auto;padding:18px;border-left:8px solid #0a1930;border-bottom:8px solid #0ea5e9}
+.school{text-align:right}.school h2{font-size:16px;text-transform:uppercase}
+.school .contact-space{border:1px dashed #ccc;min-height:38px;font-size:12px;color:#999;display:grid;place-items:center;margin-top:4px}
+.head{display:flex;gap:12px;align-items:center;border-bottom:3px solid #0ea5e9;padding-bottom:8px}
+.logo-space{width:70px;height:70px;min-width:70px;border:2px dashed #999;border-radius:8px;display:grid;place-items:center;font-size:10px;color:#999;text-align:center;background:#fafafa}
+.title{background:#0ea5e9;color:#fff;text-align:center;padding:8px;font-weight:900;font-size:14px;margin:10px 0}
+.info{display:flex;gap:12px;flex-wrap:wrap}
+.photo{width:120px;height:140px;background:#7a8a9a;display:grid;place-items:center;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}
+.info-text{flex:1;min-width:200px;font-size:14px;line-height:1.9}.info-text b{font-size:16px}
+.chart-box{flex:1;min-width:260px;border:1px solid #eee;padding:8px}
+canvas{width:100%;height:130px}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #ddd;border-bottom:1px solid #ddd;margin:12px 0;text-align:center;background:#e0f2fe}
+.stats div{padding:10px;border-right:1px solid #ddd}.stats div:last-child{border:none}.stats b{font-size:20px}.stats small{display:block}
+.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:12px;min-width:750px}
+th{background:#f8fafc;padding:8px;border:1px solid #ddd;text-align:left;font-size:11px}td{padding:7px 8px;border:1px solid #ddd}.center{text-align:center}
+.chart-wrap{display:flex;gap:8px;margin-top:10px}.y-axis{display:flex;flex-direction:column;justify-content:space-between;height:140px;font-size:13px;padding-bottom:22px;text-align:right}
+.chart-area{flex:1}.bars{display:flex;align-items:flex-end;gap:28px;height:140px;border-bottom:2px solid #333;padding:0 15px}.bar2{flex:1;background:#0096d6}
+.x-labels{display:flex;gap:28px;padding:6px 15px 0;font-size:13px;text-align:center}.x-labels div{flex:1}
+.remarks-layout{display:grid;grid-template-columns:1fr 210px;gap:14px;margin-top:14px}
+@media(max-width:600px){.remarks-layout{grid-template-columns:1fr}.bottom{grid-template-columns:1fr}}
+.remarks{font-size:13px;line-height:1.6}.sig-col{text-align:right}.sig-img{font-family:cursive;font-size:28px;color:#1e40af;margin:18px 0 5px;transform:rotate(-3deg)}
+.stamp{border:3px solid #1e40af;padding:6px 8px;text-align:center;line-height:1.2}.stamp .top{color:#1e40af;font-weight:900;font-size:13px}.stamp .date{color:#dc2626;font-weight:900;font-size:22px;margin:4px 0}.stamp .box{color:#1e40af;font-weight:700;font-size:11px}
+.dates{background:#16a34a;color:#fff;padding:10px;margin-top:14px}.dates h3{font-size:14px}
+.qr-row{display:flex;gap:14px;align-items:center;margin-top:12px}.qr-box{width:110px;height:110px;min-width:110px;border:3px solid #111;display:grid;place-items:center;font-size:10px;text-align:center}
+.bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+@media print{body{background:#fff;padding:0}.topbar,.edit-panel{display:none}.page{border:none;max-width:none}}
+.legend{font-size:11px;display:flex;gap:12px;margin-top:4px}.dot{width:10px;height:10px;display:inline-block;border-radius:50%}
 </style>
 </head>
 <body>
-<div class="header">
-<div class="photo">STUDENT<br>PHOTO<br>HERE</div>
-<h1 id="schoolName">SCHOOL NAME</h1>
-<h3>REPORT CARD - TERM 1, 2026</h3>
+
+<!-- TOP CONTROLS -->
+<div class="topbar">
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<select id="studentSelect" onchange="loadStudent()"></select>
+<button class="btn-green" onclick="toggleEdit()">⚙️ Head Teacher Settings</button>
+<button class="btn-gold" onclick="window.print()">🖨️ Print / Save PDF</button>
 </div>
-<p><b>Student Name:</b> <input id="sname" placeholder="e.g. Bella" style="width:150px"> <b>Class:</b> <input id="sclass" placeholder="e.g. S1" style="width:60px"> <b>Stream:</b> <input id="sstream" placeholder="e.g. A" style="width:50px"></p>
-<table>
-<tr><th>Subject</th><th>Marks / 80</th><th>Marks / 100</th><th>Marks / 20%</th><th>Activities of Integration</th></tr>
-<tbody id="tbody"></tbody>
-</table>
-<p><b>Total:</b> <span id="total">-</span> &nbsp; <b>Average:</b> <span id="avg">-</span> &nbsp; <i>(Total / Number of Subjects)</i></p>
-<p><b>Teacher's Comment:</b><br><textarea style="width:100%;height:50px"></textarea></p>
-<p><b>Head Teacher's Signature:</b> ___________________ &nbsp;&nbsp; <b>School Stamp:</b> <span style="border:2px solid #000;padding:20px;display:inline-block">STAMP HERE</span></p>
-<div class="noprint"><button onclick="calc()">Calculate Total & Average</button> <button onclick="window.print()">PRINT REPORT CARD</button><br><br><a href="index.html">Back to Home</a></div>
+<a href="index.html"><button>🏠 Home</button></a>
+</div>
+
+<!-- HEAD TEACHER EDIT PANEL - HIDDEN WHEN PRINTING -->
+<div class="edit-panel" id="editPanel" style="display:none">
+<h3>⚙️ Head Teacher - Report Settings (Fill once, it saves automatically)</h3>
+<div class="edit-grid">
+<div><label>Class for this Report (e.g. SENIOR 4, SENIOR 1, SENIOR 2)</label><input id="cfgClass" placeholder="SENIOR 4" oninput="saveConfig()"></div>
+<div><label>Report Type (e.g. S.4 REPORTS, MID-TERM, END OF TERM) - Leave empty if none</label><input id="cfgReportType" placeholder="S.4 REPORTS" oninput="saveConfig()"></div>
+<div><label>Term / Year (e.g. 2026 TERM 1)</label><input id="cfgTerm" placeholder="2026 TERM 1" oninput="saveConfig()"></div>
+<div><label>School Contacts (will show top right - leave empty for now)</label><input id="cfgContacts" placeholder="Phone / Email" oninput="saveConfig()"></div>
+</div>
+<label>Assessment Column 1 Name (e.g. END OF YEAR 2025)</label><input id="cfgCol1" placeholder="END OF YEAR 2025" oninput="saveConfig()">
+<label>Assessment Column 2 Name (e.g. PRE-REGISTRATION)</label><input id="cfgCol2" placeholder="PRE-REGISTRATION" oninput="saveConfig()">
+<label>Assessment Column 3 Name (e.g. AVERAGE SCORE (A.O.I))</label><input id="cfgCol3" placeholder="AVERAGE SCORE (A.O.I)" oninput="saveConfig()">
+<div class="edit-grid">
+<div><label>Closing Date</label><input id="cfgClose" type="date" onchange="saveConfig()"></div>
+<div><label>Opening Date</label><input id="cfgOpen" type="date" onchange="saveConfig()"></div>
+</div>
+<label>Class Teacher Remark</label><textarea id="cfgRemark1" rows="2" oninput="saveConfig()">Has attained a satisfactory level of competency and can apply knowledge in common real-life situations, but still needs guidance for more complex tasks.</textarea>
+<label>Head Teacher Remark</label><textarea id="cfgRemark2" rows="2" oninput="saveConfig()">Good performance, you need to work harder for the best next year.</textarea>
+<p style="font-size:12px;color:#666;margin-top:8px">✅ Deviation, Grade, Total, Average, Result and Class Average graph are AUTOMATIC - you don't type them.</p>
+</div>
+
+<!-- REPORT PAGE -->
+<div class="page">
+<div class="school"><h2>BWIJANGA SECONDARY SCHOOL</h2><div class="contact-space" id="showContacts">Contacts space - to be filled</div></div>
+<div class="head"><div class="logo-space">SCHOOL<br>BADGE<br>SPACE</div><div><b style="font-size:18px">BWIJANGA SECONDARY SCHOOL</b><br><small>Excellence • Discipline • God First</small></div></div>
+
+<!-- BLUE TITLE - AUTO FROM SETTINGS -->
+<div class="title" id="blueTitle">ACADEMIC REPORT FORM - SENIOR 4 - S.4 REPORTS - (2026 TERM 1)</div>
+
+<div class="info">
+<div class="photo" id="photoBox"><svg width="110" height="130" viewBox="0 0 110 130"><ellipse cx="55" cy="45" rx="22" ry="28" fill="#9aa8b5"/><path d="M5 130 Q55 70 105 130 Z" fill="#9aa8b5"/></svg></div>
+<div class="info-text"><b>NAME: <span id="rName">-</span></b><br>ADMNO: <span id="rAdm">-</span><br>CLASS: <span id="rClass">-</span><br><small style="color:#999">Auto-filled from system</small></div>
+<div class="chart-box"><small>Subject Performance - <b>Student vs Class</b></small><canvas id="lineChart" width="320" height="130"></canvas><div class="legend"><span><span class="dot" style="background:#4caf50"></span> Student</span><span><span class="dot" style="background:#94a3b8"></span> Class Average</span></div></div>
+</div>
+
+<div class="stats"><div><small>Total Marks</small><b><span id="rTotal">0</span>/<span id="rTotalMax">900</span></b> <span id="rDevTotal">0 →</span></div><div><small>Average Score</small><b><span id="rAvg">0</span>%</b> <span id="rDevAvg">0 →</span></div><div><small>Result</small><b id="rResult">-</b></div></div>
+
+<div class="table-wrap"><table>
+<tr><th rowspan="2">SUBJECT</th><th rowspan="2" class="center" id="thCol1">END OF YEAR 2025<br>x/40</th><th rowspan="2" class="center" id="thCol2">PRE-REGISTRATION<br>x/40</th><th rowspan="2" class="center" id="thCol3">AVERAGE SCORE (A.O.I)<br>x/20</th><th colspan="3" class="center">S.4 Reports</th><th rowspan="2">COMMENT</th><th rowspan="2">TEACHER</th></tr>
+<tr><th class="center">MARKS</th><th class="center">DEV.</th><th class="center">GR.</th></tr>
+<tbody id="subjectBody"></tbody></table></div>
+
+<div class="bottom">
+<div><b><span id="perfName">Student</span>'s Performance over Time</b><div class="chart-wrap"><div class="y-axis"><span>100</span><span>50</span><span>0</span></div><div class="chart-area"><div class="bars"><div class="bar2" style="height:55%"></div><div class="bar2" style="height:78%"></div><div class="bar2" style="height:69%"></div></div><div class="x-labels"><div>S3 T2, 2025</div><div>S3 T3, 2025</div><div>S4 T1, 2026</div></div></div></div></div>
+<div class="remarks"><h4>Remarks</h4><b>Class Teacher</b><p id="showRemark1"></p><br><b>Head Teacher - BWIJANGA S.S.</b><p id="showRemark2"></p></div>
+</div>
+
+<div class="remarks-layout" style="margin-top:6px"><div></div><div class="sig-col"><h4>Signature</h4><div class="sig-img">✍️</div><div class="stamp"><div class="top">THE HEADTEACHER<br>BWIJANGA SECONDARY SCHOOL</div><div class="date" id="stampDate">01 MAY 2026</div><div class="box">P.O. Box, MASINDI</div></div></div></div>
+
+<div class="dates"><h3>SCHOOL DATES</h3><p>Closing Date: <span id="showClose">01/05/2026</span><br>Opening Date: <span id="showOpen">25/05/2026</span></p></div>
+<div class="qr-row"><div class="qr-box">📷<br>QR CODE<br>Scan Me</div><p style="font-size:14px;line-height:1.5">Scan to access your interactive student profile on<br><b>Zeraki Analytics.</b> Your username: <b id="qrUser">-</b></p></div>
+<p style="text-align:right;color:#0ea5e9;font-size:11px;margin-top:8px">School Motto: Excellence • Discipline • God First</p>
+</div>
+
 <script>
-let subjects=["Mathematics","English","Biology","Physics","Chemistry","Agriculture","Art and Design","Entrepreneurship","ICT","PE","CRE"];
-let tb=document.getElementById("tbody");
-subjects.forEach((s,i)=>{
-tb.innerHTML+=`<tr><td>${s}</td><td><input class="m80" type="number" oninput="calc()"></td><td class="m100">-</td><td class="m20">-</td><td><input style="width:95%" placeholder="Activity..."></td></tr>`;
-});
-function calc(){
-let total80=0,count=0;
-document.querySelectorAll(".m80").forEach((inp,idx)=>{
-let v=Number(inp.value||0);
-if(inp.value!==""){total80+=v;count++;}
-let out100=(v/80*100).toFixed(1);
-let out20=(v/80*20).toFixed(1);
-document.querySelectorAll(".m100")[idx].innerText=v?out100:"-";
-document.querySelectorAll(".m20")[idx].innerText=v?out20:"-";
-});
-document.getElementById("total").innerText=total80;
-document.getElementById("avg").innerText=count?(total80/count).toFixed(1):"-";
+// ---------- 1. CONFIG - Head Teacher can edit ----------
+let defaultConfig={cls:"SENIOR 4",reportType:"S.4 REPORTS",term:"2026 TERM 1",contacts:"",col1:"END OF YEAR 2025",col2:"PRE-REGISTRATION",col3:"AVERAGE SCORE (A.O.I)",close:"2026-05-01",open:"2026-05-25",remark1:"Has attained a satisfactory level of competency and can apply knowledge in common real-life situations, but still needs guidance for more complex tasks.",remark2:"Good performance, you need to work harder for the best next year."};
+let config=JSON.parse(localStorage.getItem('bwijanga_report_config')||'null')||defaultConfig;
+
+function toggleEdit(){let p=document.getElementById("editPanel"); p.style.display=p.style.display=="none"?"block":"none";}
+function saveConfig(){
+ config={cls:document.getElementById("cfgClass").value||"SENIOR 4",reportType:document.getElementById("cfgReportType").value,col1:document.getElementById("cfgCol1").value||"END OF YEAR 2025",col2:document.getElementById("cfgCol2").value||"PRE-REGISTRATION",col3:document.getElementById("cfgCol3").value||"AVERAGE SCORE (A.O.I)",term:document.getElementById("cfgTerm").value||"2026 TERM 1",contacts:document.getElementById("cfgContacts").value,close:document.getElementById("cfgClose").value,open:document.getElementById("cfgOpen").value,remark1:document.getElementById("cfgRemark1").value,remark2:document.getElementById("cfgRemark2").value};
+ localStorage.setItem('bwijanga_report_config',JSON.stringify(config)); applyConfig();
 }
+function applyConfig(){
+ document.getElementById("cfgClass").value=config.cls; document.getElementById("cfgReportType").value=config.reportType; document.getElementById("cfgTerm").value=config.term; document.getElementById("cfgContacts").value=config.contacts; document.getElementById("cfgCol1").value=config.col1; document.getElementById("cfgCol2").value=config.col2; document.getElementById("cfgCol3").value=config.col3; document.getElementById("cfgClose").value=config.close; document.getElementById("cfgOpen").value=config.open; document.getElementById("cfgRemark1").value=config.remark1; document.getElementById("cfgRemark2").value=config.remark2;
+ // Blue title: ACADEMIC REPORT FORM - [CLASS] - [REPORT TYPE if filled] - ([TERM])
+ let title="ACADEMIC REPORT FORM - "+config.cls;
+ if(config.reportType) title+=" - "+config.reportType;
+ if(config.term) title+=" - ("+config.term+")";
+ document.getElementById("blueTitle").innerText=title;
+ document.getElementById("thCol1").innerHTML=config.col1+"<br>x/40"; document.getElementById("thCol2").innerHTML=config.col2+"<br>x/40"; document.getElementById("thCol3").innerHTML=config.col3+"<br>x/20";
+ document.getElementById("showContacts").innerText=config.contacts||"Contacts space - to be filled";
+ document.getElementById("showRemark1").innerText=config.remark1; document.getElementById("showRemark2").innerText=config.remark2;
+ document.getElementById("showClose").innerText=config.close||"-"; document.getElementById("showOpen").innerText=config.open||"-"; document.getElementById("stampDate").innerText=config.close?config.close.split("-").reverse().join(" / "):"-";
+}
+
+// ---------- 2. STUDENTS - Auto from system ----------
+let students=JSON.parse(localStorage.getItem('bwijanga_students')||'null')||[
+ {name:"Kusemererwa Samuel",id:"1817",cls:"4 C",photo:""},
+ {name:"John Mugisha",id:"BW-27001",cls:"S.4",photo:""}
+];
+// Scores: if teacher entered in teacher portal, they are here. If not, use sample.
+let allScores=JSON.parse(localStorage.getItem('bwijanga_scores')||'null')||null;
+
+let subjects=[
+ {name:"English",short:"ENGL",eoy:26,pre:16,avg:16,mark:58.8,prev:55,teacher:"Tino Juliet",classAvg:52},
+ {name:"Mathematics",short:"MTC",eoy:25,pre:22,avg:20,mark:67.2,prev:60,teacher:"Isingoma Gabriel",classAvg:58},
+ {name:"Biology",short:"BIO",eoy:34,pre:26,avg:13,mark:73.8,prev:68,teacher:"Isaut Sylas",classAvg:64},
+ {name:"Physics",short:"PHY",eoy:31,pre:16,avg:14,mark:61.2,prev:58,teacher:"Passy Byamaka",classAvg:57},
+ {name:"Chemistry",short:"CHEM",eoy:35,pre:28,avg:14,mark:77.8,prev:70,teacher:"Kyalisima John",classAvg:66},
+ {name:"Geography",short:"GEO",eoy:28,pre:13,avg:13,mark:54.6,prev:50,teacher:"Bwire Derick Malibo",classAvg:51},
+ {name:"C.R.E",short:"CRE",eoy:27,pre:30,avg:20,mark:76.4,prev:72,teacher:"Komuhendo Rita",classAvg:68},
+ {name:"Art and Design",short:"ART",eoy:30,pre:30,avg:17,mark:76.6,prev:71,teacher:"Kiiza B. Fred",classAvg:70},
+ {name:"H and P.E",short:"HPE",eoy:27,pre:30,avg:18,mark:74.8,prev:70,teacher:"Bwambale Gad",classAvg:69},
+];
+
+function gradeFor(m){ if(m>=75)return"A"; if(m>=65)return"B"; if(m>=55)return"C"; if(m>=45)return"D"; return "E"; }
+function commentFor(m){ if(m>=75)return"Outstanding Performance"; if(m>=65)return"Satisfactory Performance"; if(m>=55)return"Basic Performance"; return "Needs Improvement"; }
+
+function render(){
+ let body=document.getElementById("subjectBody"); body.innerHTML='';
+ let total=0, prevTotal=0;
+ subjects.forEach(s=>{
+   let dev=s.mark - s.prev; // Deviation = now - previous
+   let devText=(dev>0?"▲ +"+dev.toFixed(1):dev<0?"▼ "+dev.toFixed(1):"0 →");
+   let gr=gradeFor(s.mark);
+   total+=s.mark; prevTotal+=s.prev;
+   body.innerHTML+=`<tr><td>${s.name}</td><td class="center">${s.eoy}</td><td class="center">${s.pre}</td><td class="center">${s.avg}</td><td class="center">${s.mark}%</td><td class="center">${devText}</td><td class="center">${gr}</td><td>${commentFor(s.mark)}</td><td>${s.teacher}</td></tr>`;
+ });
+ let avg=total/subjects.length;
+ let prevAvg=prevTotal/subjects.length;
+ document.getElementById("rTotal").innerText=Math.round(total); // 621
+ document.getElementById("rTotalMax").innerText=subjects.length*100;
+ document.getElementById("rAvg").innerText=Math.round(avg);
+ document.getElementById("rDevTotal").innerText=(total-prevTotal>0?"▲ +":"")+Math.round(total-prevTotal)+" →";
+ document.getElementById("rDevAvg").innerText=(avg-prevAvg>0?"▲ +":"")+Math.round(avg-prevAvg)+" →";
+ document.getElementById("rResult").innerText= avg>=70?1:avg>=60?2:avg>=50?3:4;
+ drawLine();
+}
+
+function drawLine(){
+ let c=document.getElementById("lineChart"); let ctx=c.getContext("2d"); ctx.clearRect(0,0,c.width,c.height);
+ function getY(v){return c.height-22-((v-40)/40)*(c.height-50)} function getX(i){return 30+i*(c.width-50)/(subjects.length-1)}
+ ctx.fillStyle="#999"; ctx.font="11px Arial"; ctx.textAlign="right";
+ ctx.fillText("80",24,getY(80)+4); ctx.fillText("60",24,getY(60)+4); ctx.fillText("40",24,getY(40)+4);
+ // Class Average - GREY line
+ ctx.beginPath(); ctx.strokeStyle="#94a3b8"; ctx.lineWidth=1.5; ctx.setLineDash([4,3]);
+ subjects.forEach((s,i)=>{ if(i==0)ctx.moveTo(getX(i),getY(s.classAvg)); else ctx.lineTo(getX(i),getY(s.classAvg)); }); ctx.stroke(); ctx.setLineDash([]);
+ subjects.forEach((s,i)=>{ ctx.fillStyle="#94a3b8"; ctx.beginPath(); ctx.arc(getX(i),getY(s.classAvg),3,0,7); ctx.fill(); });
+ // Student - GREEN line + grey area
+ ctx.beginPath(); ctx.moveTo(getX(0),getY(40)); subjects.forEach((s,i)=>{ctx.lineTo(getX(i),getY(s.mark))}); ctx.lineTo(getX(subjects.length-1),getY(40)); ctx.closePath(); ctx.fillStyle="rgba(180,180,180,0.25)"; ctx.fill();
+ ctx.beginPath(); ctx.strokeStyle="#7bc47f"; ctx.lineWidth=2.5; subjects.forEach((s,i)=>{ if(i==0)ctx.moveTo(getX(i),getY(s.mark)); else ctx.lineTo(getX(i),getY(s.mark)); }); ctx.stroke();
+ subjects.forEach((s,i)=>{ ctx.fillStyle="#4caf50"; ctx.beginPath(); ctx.arc(getX(i),getY(s.mark),4,0,7); ctx.fill(); });
+ ctx.fillStyle="#999"; ctx.font="9px Arial"; ctx.textAlign="center"; subjects.forEach((s,i)=>{ ctx.save(); ctx.translate(getX(i),c.height-6); ctx.rotate(-0.6); ctx.fillText(s.short,0,0); ctx.restore(); });
+}
+
+function loadStudent(){
+ let s=students[document.getElementById("studentSelect").value]||students[0];
+ document.getElementById("rName").innerText=s.name; document.getElementById("rAdm").innerText=s.id; document.getElementById("rClass").innerText=s.cls;
+ document.getElementById("perfName").innerText=s.name; document.getElementById("qrUser").innerText=s.id+"@bwijanga";
+ if(s.photo) document.getElementById("photoBox").innerHTML=`<img src="${s.photo}">`;
+ // In real system: load this student's scores from bwijanga_scores here
+ render();
+}
+
+let sel=document.getElementById("studentSelect"); students.forEach((s,i)=>{ sel.innerHTML+=`<option value="${i}">${s.name} - ${s.id} - ${s.cls}</option>`; });
+applyConfig(); loadStudent();
 </script>
 </body>
 </html>
