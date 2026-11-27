@@ -135,7 +135,11 @@ function applyConfig(){
 }
 
 // ---------- 2. STUDENTS - Auto from system ----------
-let students=JSON.parse(localStorage.getItem('bwijanga_students')||'null')||[
+if(window.location.search.includes("student=1")){
+  let btns=document.querySelectorAll("button");
+  btns.forEach(b=>{ if(b.innerText.includes("Head Teacher Settings")) b.style.display="none"; });
+}
+ let students=JSON.parse(localStorage.getItem('bwijanga_students')||'null')||[
  {name:"Kusemererwa Samuel",id:"1817",cls:"4 C",photo:""},
  {name:"John Mugisha",id:"BW-27001",cls:"S.4",photo:""}
 ];
