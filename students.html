@@ -117,5 +117,6 @@ function saveAll(silent){ localStorage.setItem('bwijanga_assessments',JSON.strin
 function filterStudents(){ let q=document.getElementById("search").value.toLowerCase(); let c=document.getElementById("classFilter").value; document.querySelectorAll("#studentsBody tr").forEach((tr,i)=>{ let s=students[i]; let show=(!q||s.name.toLowerCase().includes(q))&&(!c||s.cls===c); tr.style.display=show?"":"none"; }); }
 render();
 </script>
+<a href="report.html" style="display:block;background:#0a1930;color:#fff;padding:14px;border-radius:10px;text-align:center;text-decoration:none;font-weight:bold;margin:10px">📄 View Report Cards - Admin</a>
 </body>
 </html>
