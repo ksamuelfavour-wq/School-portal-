@@ -1,168 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BWIJANGA S.S. - Admin Dashboard</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HM Dashboard - BWIJANGA S.S.</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-  body{background:#eef2f7;color:#111}
-  header{background:#0a1930;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
-  .logo{display:flex;gap:10px;align-items:center}
-  .logo-box{background:#f5b301;color:#0a1930;width:46px;height:46px;display:grid;place-items:center;border-radius:12px;font-weight:900;font-size:18px}
-  .logo small{color:#94a3b8}
-  .menu{font-size:26px;cursor:pointer}
-  #mobileMenu{display:none;background:#0a1930;padding:10px 16px 18px}
-  #mobileMenu a{color:#fff;display:block;padding:13px 10px;text-decoration:none;font-weight:bold;border-bottom:1px solid #1e3a5f}
-  .tabs{background:#0a1930;padding:0 12px 14px;display:flex;gap:8px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
-  .tabs::-webkit-scrollbar{display:none}
-  .tabs a{color:#cbd5e1;text-decoration:none;padding:10px 14px;border-radius:20px;font-size:14px}
-  .tabs a.active{background:#1e293b;color:#fff;border-left:3px solid #f5b301}
-  .wrap{padding:18px 14px;max-width:1000px;margin:0 auto}
-  .top-row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-  .top-row h1{font-size:30px;color:#0f172a}
-  .top-row p{color:#64748b;line-height:1.5;margin-top:6px}
-  select{padding:10px;border:1px solid #ddd;border-radius:10px;background:#fff}
-  .avatar{width:42px;height:42px;background:#dbeafe;border-radius:50%;display:grid;place-items:center;font-weight:900;flex-shrink:0}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
-  .stat{background:#fff;border-radius:16px;padding:16px}
-  .stat-top{display:flex;justify-content:space-between;align-items:center;color:#64748b;font-size:14px}
-  .icon{width:38px;height:38px;background:#eef2ff;border-radius:10px;display:grid;place-items:center}
-  .stat b{font-size:32px;display:block;margin:14px 0 6px;color:#0f172a}
-  .stat small{color:#94a3b8}
-  .card{background:#fff;border-radius:16px;padding:18px;margin-bottom:16px}
-  .card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-  .card-head h2{font-size:20px}
-  .card-head a{color:#1e3a8a;text-decoration:none;font-weight:bold;font-size:14px}
-  .table-wrap{overflow-x:auto}
-  table{width:100%;border-collapse:collapse;min-width:520px}
-  th{text-align:left;color:#94a3b8;font-size:12px;padding:12px 8px;border-bottom:1px solid #e2e8f0}
-  td{padding:14px 8px;border-bottom:1px solid #f1f5f9;font-size:14px}
-  .pill{display:inline-flex;gap:6px;align-items:center}
-  .ini{width:38px;height:38px;background:#e0e7ff;border-radius:10px;display:grid;place-items:center;font-weight:900;color:#1e3a8a;font-size:13px}
-  .active-tag{background:#dcfce7;color:#166534;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:bold}
-  .pending-tag{background:#fef3c7;color:#92400e;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:bold}
-  .actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .action{background:#f8fafc;border-radius:14px;padding:18px;text-decoration:none;color:#111}
-  .action b{display:block;margin:12px 0 4px;font-size:16px}
-  .action small{color:#64748b}
-  .activity{display:flex;gap:12px;padding:16px 0;border-bottom:1px solid #f1f5f9}
-  .activity:last-child{border:none}
-  .act-icon{width:46px;height:46px;background:#f1f5f9;border-radius:50%;display:grid;place-items:center;font-size:20px;flex-shrink:0}
-  .activity b{font-size:15px}
-  .activity small{color:#94a3b8;line-height:1.4}
-  footer{text-align:center;color:#94a3b8;padding:20px;font-size:13px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f1f5f9}
+.top{background:#0a1930;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.top h2{font-size:18px}.top small{color:#94a3b8}
+.nav{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.nav a{color:#cbd5e1;text-decoration:none;padding:8px 12px;border-radius:8px;font-size:14px}
+.nav a.active,.nav a:hover{background:#1e3a5f;color:#fff}
+.wrap{max-width:1000px;margin:0 auto;padding:16px}
+.welcome{background:#fff;border-radius:14px;padding:18px;margin-bottom:14px}
+.welcome h2{font-size:22px}.welcome p{color:#64748b;margin-top:4px;font-size:14px}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px}
+@media(max-width:600px){.stats{grid-template-columns:1fr 1fr}}
+.card{background:#fff;border-radius:14px;padding:16px}
+.card b{font-size:22px}.card p{color:#64748b;font-size:13px;margin-top:4px}.card small{color:#64748b}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.q{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:16px;text-decoration:none;color:#000;display:block}
+.q div{font-size:26px}.q b{display:block;margin-top:8px}.q span{color:#64748b;font-size:13px}
+h3{margin-bottom:12px}
+.activity{font-size:14px;line-height:1.8}
+.btn-report{display:block;background:#0a1930;color:#fff;padding:16px;border-radius:14px;text-align:center;text-decoration:none;font-weight:900;margin:12px 0}
+.badge{background:#dcfce7;color:#16a34a;padding:4px 8px;border-radius:20px;font-size:12px;font-weight:bold}
 </style>
 </head>
 <body>
-
-<header>
-  <div class="logo">
-    <div class="logo-box">BS</div>
-    <div><b>BWIJANGA S.S.</b><br><small>Headteacher / Administrator</small></div>
-  </div>
-  <div class="menu" onclick="toggleMenu()">☰</div>
-</header>
-
-<div id="mobileMenu">
-  <a href="index.html">🏠 Home</a>
-  <a href="admin.html">📊 Overview</a>
-  <a href="students.html">👨‍🎓 Students</a>
-  <a href="teachers.html">👩‍🏫 Teachers</a>
-  <a href="classes.html">📚 Classes</a>
-  <a href="results.html">📝 Results</a>
+<div class="top">
+<div><h2>👨‍💼 BWIJANGA S.S.</h2><small>HM Dashboard</small></div>
+<div style="display:flex;gap:8px;align-items:center">
+<span>🏠</span><span>🔔</span><span style="background:#f5b301;color:#000;padding:6px 10px;border-radius:20px;font-weight:bold;font-size:13px">👤 H</span>
 </div>
-
-<div class="tabs">
-  <a href="admin.html" class="active">Overview</a>
-  <a href="students.html">Students</a>
-  <a href="teachers.html">Teachers</a>
-  <a href="classes.html">Classes</a>
-  <a href="results.html">Results</a>
-  <a href="#">Announcements</a>
-  <a href="#">Settings</a>
+<div class="nav" style="width:100%">
+<a href="admin.html" class="active">Dashboard</a>
+<a href="students.html">Students</a>
+<a href="classes.html">Classes</a>
+<a href="results.html">Results</a>
+<a href="report.html">📄 Reports</a>
+<a href="announcements.html">Announcements</a>
+<a href="settings.html">Settings</a>
+</div>
 </div>
 
 <div class="wrap">
-  <div class="top-row">
-    <div>
-      <h1>Dashboard overview</h1>
-      <p>Welcome back, Headteacher. Here's your school snapshot.</p>
-    </div>
-    <div style="display:flex;gap:8px;align-items:center">
-      <select><option>Term 1 · 2027</option><option>Term 2 · 2027</option><option>Term 3 · 2027</option></select>
-      <div class="avatar">HT</div>
-    </div>
-  </div>
-
-  <div class="grid">
-    <div class="stat"><div class="stat-top"><span>Total Students</span><span class="icon">🎓</span></div><b id="totalStudents">1,248</b><small>Across all year groups</small></div>
-    <div class="stat"><div class="stat-top"><span>Teachers</span><span class="icon">👩‍🏫</span></div><b>64</b><small>Teaching staff</small></div>
-    <div class="stat"><div class="stat-top"><span>Classes</span><span class="icon">☰</span></div><b>32</b><small>Class streams</small></div>
-    <div class="stat"><div class="stat-top"><span>Subjects</span><span class="icon">📚</span></div><b>18</b><small>Available subjects</small></div>
-  </div>
-
-  <div class="card">
-    <div class="card-head"><h2>Recently registered students</h2><a href="students.html">View all →</a></div>
-    <div class="table-wrap">
-    <table>
-      <tr><th>STUDENT</th><th>STUDENT ID</th><th>CLASS</th><th>STATUS</th></tr>
-      <tr><td><span class="pill"><span class="ini">JM</span> John Mugisha</span></td><td>BW-27001</td><td>S.4</td><td><span class="active-tag">Active</span></td></tr>
-      <tr><td><span class="pill"><span class="ini">AN</span> Anna Nansubuga</span></td><td>BW-27002</td><td>S.2</td><td><span class="active-tag">Active</span></td></tr>
-      <tr><td><span class="pill"><span class="ini">PK</span> Peter Kato</span></td><td>BW-27003</td><td>S.6</td><td><span class="pending-tag">Pending</span></td></tr>
-    </table>
-    </div>
-  </div>
-
-  <!-- HEADTEACHER RESULTS - THIS IS THE NEW CARD -->
-  <div class="card">
-    <div class="card-head"><h2>📝 Latest Assessment Results - Headteacher View</h2><a href="students.html">Enter Scores →</a></div>
-    <p style="color:#64748b;font-size:14px;margin-bottom:12px">Scores entered in Students page appear here automatically.</p>
-    <div id="headteacherResults">Loading scores...</div>
-  </div>
-
-  <div class="card">
-    <h2 style="margin-bottom:14px">Quick actions</h2>
-    <div class="actions">
-      <a class="action" href="students.html"><span style="font-size:28px">+</span><b>Add student</b><small>Register a learner</small></a>
-      <a class="action" href="students.html"><span style="font-size:28px">📊</span><b>Enter results</b><small>Manage assessment</small></a>
-      <a class="action" href="#"><span style="font-size:28px">📢</span><b>Post notice</b><small>Share school news</small></a>
-      <a class="action" href="classes.html"><span style="font-size:28px">☰</span><b>Manage classes</b><small>Class & streams</small></a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-head"><h2>Recent activity</h2><a href="#">Sample activity</a></div>
-    <div class="activity"><div class="act-icon">🎓</div><div><b>Student registration workflow</b><br><small>Use Add Student to test the prototype · just now</small></div></div>
-    <div class="activity"><div class="act-icon">📋</div><div><b>Term 1 · 2027</b><br><small>Academic period selected · current preview</small></div></div>
-    <div class="activity"><div class="act-icon">⚙️</div><div><b>Portal prototype is ready</b><br><small>Connect a backend before using real school records</small></div></div>
-  </div>
-
-  <footer>© 2026 Bwijanga Secondary School • Excellence • Discipline • God First</footer>
+<div class="welcome">
+<h2>Welcome back, Headmaster! 👋</h2>
+<p>Here's what's happening at Bwijanga S.S. today.</p>
+<a href="report.html" class="btn-report">📄 View Report Cards - HM</a>
 </div>
 
-<script>
-function toggleMenu(){
-  var m = document.getElementById("mobileMenu");
-  m.style.display = (m.style.display === "block") ? "none" : "block";
-}
+<div class="stats">
+<div class="card"><b>1</b><p>Total Students</p><small>▲ 0% from last term</small></div>
+<div class="card"><b>0</b><p>Pending Results</p><small>0% to be approved</small></div>
+<div class="card"><b>100%</b><p>Pass Rate</p><small>▲ 0% from last term</small></div>
+</div>
 
-// HEADTEACHER RESULTS - reads same data as students.html
-let st = JSON.parse(localStorage.getItem('bwijanga_students')||'[]');
-let ass = JSON.parse(localStorage.getItem('bwijanga_assessments')||'[]');
-let box = document.getElementById('headteacherResults');
-if(!st.length){
-  box.innerHTML = '<p style="color:#64748b">No scores yet. Go to <a href="students.html">Students page</a> and add scores, then come back here.</p>';
-  // Show default example so Headteacher sees how it looks
-  box.innerHTML += '<div style="overflow-x:auto;margin-top:12px"><table><tr><th>STUDENT</th><th>Test 1</th><th>Midterm</th><th>AVG</th></tr><tr><td>John Mugisha (S.4)</td><td>78</td><td>82</td><td><b>80%</b></td></tr><tr><td>Anna Nansubuga (S.2)</td><td>85</td><td>88</td><td><b>87%</b></td></tr><tr><td>Peter Kato (S.6)</td><td>60</td><td>65</td><td><b>63%</b></td></tr></table></div><p style="font-size:12px;color:#94a3b8;margin-top:8px">Example preview - real scores will replace this after you save in Students page.</p>';
-} else {
-  box.innerHTML = '<div style="overflow-x:auto"><table><tr><th>STUDENT</th>' + ass.map(a=>'<th>'+a+'</th>').join('') + '<th>TOTAL</th><th>AVG</th><th>STATUS</th></tr>' + st.map(s=>{
-    let total = s.scores.reduce((a,b)=>a+(Number(b)||0),0);
-    let avg = ass.length ? Math.round(total/ass.length) : 0;
-    return '<tr><td>'+s.name+' ('+s.cls+')</td>' + s.scores.map(v=>'<td>'+v+'</td>').join('') + '<td><b>'+total+'</b></td><td><b>'+avg+'%</b></td><td>'+(avg>=50?'<span class="active-tag">Pass</span>':'<span class="pending-tag">Fail</span>')+'</td></tr>';
-  }).join('') + '</table></div>';
-}
-</script>
+<div class="grid">
+<div class="card">
+<h3>Quick actions</h3>
+<div class="quick">
+<a href="add-student.html" class="q"><div>➕</div><b>+ Add student</b><span>Add new student</span></a>
+<a href="results.html" class="q"><div>📊</div><b>Enter results</b><span>Input marks</span></a>
+<a href="announcements.html" class="q"><div>📣</div><b>Post notice</b><span>Announcement</span></a>
+<a href="classes.html" class="q"><div>☰</div><b>Manage classes</b><span>Class & streams</span></a>
+<a href="report.html" class="q" style="background:#eef2ff;border-color:#c7d2fe"><div>📄</div><b>View Report Cards</b><span>Admin & Students Reports</span></a>
+<a href="settings.html" class="q"><div>⚙️</div><b>Report Settings</b><span>Class, Term, Grades</span></a>
+</div>
+</div>
 
+<div class="card">
+<h3>Recent activity</h3>
+<div class="activity">
+📝 <b>New announcement</b> posted by HM <br><small style="color:#94a3b8">Today at 3:43 PM</small><br><br>
+✅ <b>Student application</b> approved by HM <br><small style="color:#94a3b8">Today at 3:43 PM</small><br><br>
+👤 <b>New student</b> registered by HM <br><small style="color:#94a3b8">Today at 3:43 PM</small>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>
