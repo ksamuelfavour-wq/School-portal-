@@ -9,9 +9,13 @@
   body{background:#f4f6f8;color:#111}
   header{background:#0a1930;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
   .logo{display:flex;gap:10px;align-items:center}
-  .logo-box{background:#132a4d;width:48px;height:48px;display:grid;place-items:center;border-radius:10px;font-weight:900;font-size:22px}
-  .logo small{color:#f5b301;letter-spacing:2px;font-size:11px}
-  .menu{font-size:26px}
+  .logo-box{background:#132a4d;width:48px;height:48px;display:grid;place-items:center;border-radius:10px;font-weight:900;font-size:22px;flex-shrink:0}
+  .logo b{font-size:16px;white-space:nowrap}
+  .logo small{color:#f5b301;letter-spacing:1px;font-size:10px;white-space:nowrap}
+  .menu{font-size:28px;cursor:pointer;padding:5px 10px}
+  #mobileMenu{display:none;background:#0a1930;padding:10px 16px 20px;text-align:left;border-top:1px solid #1e3a5f}
+  #mobileMenu a{color:#fff;display:block;padding:14px 10px;text-decoration:none;font-weight:bold;border-bottom:1px solid #1e3a5f}
+  #mobileMenu a.gold{color:#f5b301}
   .hero{background:#0a1930;color:#fff;padding:40px 20px 30px;text-align:center}
   .hero span{color:#f5b301;letter-spacing:3px;font-size:12px;font-weight:bold}
   .hero h1{font-size:42px;line-height:1.05;margin:14px 0}
@@ -21,7 +25,6 @@
   .btn-gold{background:#f5b301;color:#000}
   .btn-white{background:#fff;color:#000}
   .overview{background:#fff;color:#111;border-radius:14px;padding:20px;text-align:left;max-width:700px;margin:0 auto}
-  .overview b{color:#0a1930}
   .overview small{color:#666}
   .section{padding:28px 18px;max-width:900px;margin:0 auto}
   .section h2{font-size:32px;margin:8px 0 20px}
@@ -31,7 +34,7 @@
   .pill{display:inline-block;background:#eef2ff;padding:6px 12px;border-radius:20px;font-size:13px;font-weight:bold;color:#1e3a8a}
   .login-btn{display:block;text-align:center;background:#0a1930;color:#fff;padding:14px;border-radius:10px;text-decoration:none;margin-top:16px}
   .update{background:#fff;border-radius:14px;padding:18px;margin-bottom:12px;display:flex;gap:14px;align-items:center}
-  .update-icon{width:50px;height:50px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:#eef2ff}
+  .update-icon{width:50px;height:50px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:#eef2ff;flex-shrink:0}
   .principle{background:#0a1930;color:#fff;border-radius:18px;padding:36px 22px;text-align:center}
   .principle h2{font-size:34px}
   footer{background:#020617;color:#ccc;padding:24px 18px;text-align:center}
@@ -45,32 +48,17 @@
     <div class="logo-box">BS</div>
     <div><b>BWIJANGA S.S.</b><br><small>SCHOOL DIGITAL PORTAL</small></div>
   </div>
-  <header>
-  <div class="logo">
-    <div class="logo-box">BS</div>
-    <div><b>BWIJANGA S.S.</b><br><small>SCHOOL DIGITAL PORTAL</small></div>
-  </div>
   <div class="menu" onclick="toggleMenu()">☰</div>
 </header>
 
-<div id="mobileMenu" style="display:none;background:#0a1930;padding:16px;text-align:center">
-  <a href="#" style="color:white;display:block;padding:12px;text-decoration:none;font-weight:bold">Home</a>
-  <a href="#" style="color:white;display:block;padding:12px;text-decoration:none;font-weight:bold">Portals</a>
-  <a href="#" style="color:white;display:block;padding:12px;text-decoration:none;font-weight:bold">Updates</a>
-  <a href="#" style="color:#f5b301;display:block;padding:12px;text-decoration:none;font-weight:bold">Student Login</a>
+<div id="mobileMenu">
+  <a href="#">🏠 Home</a>
+  <a href="#">🗂️ Portals</a>
+  <a href="#">📢 Updates</a>
+  <a href="#" class="gold">👨‍🎓 Student Login →</a>
+  <a href="#" class="gold">👩‍🏫 Teacher Login →</a>
+  <a href="#" class="gold">🛡️ Admin Login →</a>
 </div>
-
-<script>
-function toggleMenu(){
-  var m = document.getElementById("mobileMenu");
-  if(m.style.display === "none"){
-    m.style.display = "block";
-  } else {
-    m.style.display = "none";
-  }
-}
-</script>
-</header>
 
 <div class="hero">
   <span>LEARNING • LEADERSHIP • LEGACY</span>
@@ -135,6 +123,17 @@ function toggleMenu(){
   <a href="#">Home</a> <a href="#">Portals</a> <a href="#">Updates</a><br><br>
   <small>© 2026 Bwijanga Secondary School. All rights reserved.</small>
 </footer>
+
+<script>
+function toggleMenu(){
+  var m = document.getElementById("mobileMenu");
+  if(m.style.display === "block"){
+    m.style.display = "none";
+  } else {
+    m.style.display = "block";
+  }
+}
+</script>
 
 </body>
 </html>
