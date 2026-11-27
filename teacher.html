@@ -1,46 +1,148 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Teacher Login - Bwijanga S.S</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Portal - BWIJANGA S.S.</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial;background:#0f172a;color:white;min-height:100vh;padding:25px 20px}
-h1{font-size:34px;text-align:center}
-p.sub{text-align:center;font-size:18px;margin:10px 0 30px;opacity:0.9}
-.box{background:white;color:#0f172a;border-radius:20px;padding:30px;max-width:500px;margin:0 auto}
-label{font-size:20px;font-weight:bold;display:block;margin-top:18px}
-input{width:100%;padding:18px;font-size:20px;border:2px solid #cbd5e1;border-radius:12px;margin-top:8px}
-button{width:100%;background:#16a34a;color:white;font-size:22px;font-weight:bold;padding:18px;border:none;border-radius:12px;margin-top:25px}
-.back{display:block;text-align:center;margin-top:20px;color:white;font-size:17px}
-#msg{font-size:18px;text-align:center;margin-top:15px;font-weight:bold}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#eef2f7}
+header{background:#0a1930;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;gap:10px;align-items:center}
+.logo-box{background:#f5b301;color:#0a1930;width:46px;height:46px;display:grid;place-items:center;border-radius:12px;font-weight:900}
+.logo small{color:#94a3b8}
+.menu{font-size:26px;cursor:pointer}
+#mobileMenu{display:none;background:#0a1930;padding:10px 16px 18px}
+#mobileMenu a{color:#fff;display:block;padding:13px 10px;text-decoration:none;font-weight:bold;border-bottom:1px solid #1e3a5f}
+.wrap{padding:16px;max-width:1100px;margin:0 auto}
+h1{font-size:28px}
+p{color:#64748b;margin:6px 0 14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.stat{background:#fff;border-radius:16px;padding:16px}
+.stat b{font-size:30px;display:block;margin:8px 0}
+.stat small{color:#94a3b8}
+.card{background:#fff;border-radius:16px;padding:16px;margin-bottom:16px}
+.card-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.card-head h2{font-size:20px}
+.btn{padding:12px 16px;border-radius:10px;border:none;font-weight:bold;cursor:pointer;font-size:14px}
+.btn-gold{background:#f5b301}
+.btn-blue{background:#1e3a8a;color:#fff}
+.btn-white{background:#fff;border:1px solid #ddd}
+input,select{padding:11px;border:1px solid #ddd;border-radius:10px;width:100%}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:700px}
+th{text-align:left;color:#94a3b8;font-size:12px;padding:12px 8px;border-bottom:1px solid #e2e8f0;white-space:nowrap}
+td{padding:10px 8px;border-bottom:1px solid #f1f5f9;font-size:14px}
+td input{width:70px;padding:8px;text-align:center}
+.class-btn{padding:12px;border-radius:12px;border:2px solid #e2e8f0;background:#fff;font-weight:bold;cursor:pointer}
+.class-btn.active{background:#0a1930;color:#fff;border-color:#0a1930}
+.pill{display:inline-flex;gap:8px;align-items:center}
+.ini{width:36px;height:36px;background:#e0e7ff;border-radius:10px;display:grid;place-items:center;font-weight:900;color:#1e3a8a;font-size:12px}
+.tag{background:#dcfce7;color:#166534;padding:5px 10px;border-radius:20px;font-size:12px;font-weight:bold}
+.tag2{background:#fef3c7;color:#92400e;padding:5px 10px;border-radius:20px;font-size:12px;font-weight:bold}
 </style>
 </head>
 <body>
-<h1>👨‍🏫 Teacher Login</h1>
-<p class="sub">Bwijanga S.S - Teachers Only</p>
-<div class="box">
-<label>Teacher ID</label>
-<input id="tid" placeholder="e.g. T001">
-<label>Password</label>
-<input id="tpass" type="password" placeholder="e.g. 1234">
-<button onclick="login()">LOGIN →</button>
-<p id="msg"></p>
-<p style="text-align:center;margin-top:15px;color:#64748b">Demo: ID = T001 , Password = 1234</p>
+
+<header>
+<div class="logo"><div class="logo-box">BS</div><div><b>BWIJANGA S.S.</b><br><small>Teacher Portal</small></div></div>
+<div class="menu" onclick="toggleMenu()">☰</div>
+</header>
+<div id="mobileMenu">
+<a href="index.html">🏠 Home</a>
+<a href="teacher.html">👩‍🏫 Teacher Dashboard</a>
+<a href="students.html">👨‍🎓 Students & Scores</a>
+<a href="admin.html">📊 Headteacher Dashboard</a>
+<a href="classes.html">📚 Classes</a>
 </div>
-<a class="back" href="index.html">← Back to Home</a>
+
+<div class="wrap">
+<h1>Welcome, Teacher 👩‍🏫</h1>
+<p>Select your class, add assessment, enter scores. Headteacher will see them automatically.</p>
+
+<div class="grid">
+<div class="stat">My Classes<b id="myClasses">3</b><small>S.2, S.4, S.6</small></div>
+<div class="stat">My Students<b id="myStudents">3</b><small>Across your classes</small></div>
+<div class="stat">Assessments<b id="myAssess">2</b><small>Test 1, Midterm</small></div>
+<div class="stat">Average<b id="myAvg">-</b><small>All your students</small></div>
+</div>
+
+<div class="card">
+<div class="card-head"><h2>My Classes - Tap to Filter</h2></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<button class="class-btn active" onclick="setClass('',this)">All Classes</button>
+<button class="class-btn" onclick="setClass('S.2',this)">S.2</button>
+<button class="class-btn" onclick="setClass('S.4',this)">S.4</button>
+<button class="class-btn" onclick="setClass('S.6',this)">S.6</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-head">
+<h2>Enter Scores</h2>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<button class="btn btn-gold" onclick="addAssessment()">+ Add Assessment</button>
+<button class="btn btn-blue" onclick="saveAll()">💾 Save - Send to Headteacher</button>
+</div>
+</div>
+
+<div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+<input id="search" placeholder="🔍 Search student..." onkeyup="render()" style="flex:1">
+<select id="subject" style="max-width:160px"><option>Mathematics</option><option>English</option><option>Science</option><option>History</option></select>
+</div>
+
+<div class="table-wrap">
+<table>
+<thead><tr id="headerRow"></tr></thead>
+<tbody id="studentsBody"></tbody>
+</table>
+</div>
+<p id="savedMsg" style="color:green;font-weight:bold;margin-top:10px"></p>
+<p style="color:#94a3b8;font-size:13px;margin-top:6px">Tip: Scores are saved on this device/browser. Headteacher sees them when opening Admin Dashboard on same device/browser. For real school use we will later connect a real database.</p>
+</div>
+
+<div class="card">
+<h2 style="margin-bottom:10px">Quick Actions</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<a href="students.html" style="background:#f8fafc;padding:16px;border-radius:12px;text-decoration:none;color:#111"><b>👨‍🎓 All Students</b><br><small style="color:#64748b">View all students</small></a>
+<a href="admin.html" style="background:#f8fafc;padding:16px;border-radius:12px;text-decoration:none;color:#111"><b>📊 Headteacher View</b><br><small style="color:#64748b">See how Headteacher sees your scores</small></a>
+</div>
+</div>
+</div>
+
 <script>
-function login(){
-let id=document.getElementById("tid").value.trim().toUpperCase();
-let pass=document.getElementById("tpass").value.trim();
-if(id==="T001" && pass==="1234"){
-document.getElementById("msg").innerText="Welcome Teacher! Loading dashboard...";
-setTimeout(()=>{window.location.href="teacher-dashboard.html";},800);
-}else{
-document.getElementById("msg").innerText="❌ Wrong ID or Password. Try T001 / 1234";
-document.getElementById("msg").style.color="red";
+function toggleMenu(){var m=document.getElementById("mobileMenu");m.style.display=(m.style.display==="block")?"none":"block";}
+let currentClass='';
+let assessments = JSON.parse(localStorage.getItem('bwijanga_assessments')||'["Test 1","Midterm"]');
+let students = JSON.parse(localStorage.getItem('bwijanga_students')||'null') || [
+ {name:"John Mugisha",id:"BW-27001",cls:"S.4",scores:[78,82]},
+ {name:"Anna Nansubuga",id:"BW-27002",cls:"S.2",scores:[85,88]},
+ {name:"Peter Kato",id:"BW-27003",cls:"S.6",scores:[60,65]},
+];
+function setClass(c,btn){currentClass=c; document.querySelectorAll('.class-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); render();}
+function render(){
+ let head=document.getElementById("headerRow");
+ head.innerHTML='<th>STUDENT</th><th>ID</th><th>CLASS</th>'+assessments.map((a,i)=>'<th>'+a+' <span onclick="removeAssessment('+i+')" style="color:red;cursor:pointer">✕</span></th>').join('')+'<th>AVG</th><th>STATUS</th>';
+ let body=document.getElementById("studentsBody"); body.innerHTML='';
+ let q=document.getElementById("search").value.toLowerCase();
+ let filtered=students.filter(s=>(!currentClass||s.cls===currentClass)&&(!q||s.name.toLowerCase().includes(q)));
+ filtered.forEach(s=>{
+  let si=students.indexOf(s);
+  let total=s.scores.reduce((a,b)=>a+(Number(b)||0),0);
+  let avg=assessments.length?Math.round(total/assessments.length):0;
+  let ini=s.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  body.innerHTML+=`<tr><td><span class="pill"><span class="ini">${ini}</span>${s.name}</span></td><td>${s.id}</td><td>${s.cls}</td>`+assessments.map((a,ai)=>`<td><input type="number" min="0" max="100" value="${s.scores[ai]||''}" onchange="updateScore(${si},${ai},this.value)"></td>`).join('')+`<td><b>${avg}%</b></td><td><span class="${avg>=50?'tag':'tag2'}">${avg>=50?'Pass':'Fail'}</span></td></tr>`;
+ });
+ document.getElementById("myStudents").innerText=filtered.length;
+ document.getElementById("myAssess").innerText=assessments.length;
+ let allAvg=students.length?Math.round(students.reduce((sum,s)=>sum+(s.scores.reduce((a,b)=>a+(Number(b)||0),0)/Math.max(1,assessments.length)),0)/students.length):0;
+ document.getElementById("myAvg").innerText=allAvg+'%';
 }
-}
+function updateScore(si,ai,val){students[si].scores[ai]=Number(val)||0; render();}
+function addAssessment(){let n=prompt("Assessment name? e.g. BOT, Test 2"); if(!n) return; assessments.push(n); students.forEach(s=>s.scores.push(0)); saveAll(true); render();}
+function removeAssessment(i){if(!confirm("Remove "+assessments[i]+"?")) return; assessments.splice(i,1); students.forEach(s=>s.scores.splice(i,1)); saveAll(true); render();}
+function saveAll(silent){localStorage.setItem('bwijanga_assessments',JSON.stringify(assessments)); localStorage.setItem('bwijanga_students',JSON.stringify(students)); if(!silent) document.getElementById("savedMsg").innerText="✅ Saved! Headteacher can now see these in Admin Dashboard.";}
+render();
 </script>
 </body>
 </html>
