@@ -1,42 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>School Portal</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BWIJANGA S.S. - School Digital Portal</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial;background:#0f172a;color:white;min-height:100vh}
-.top{background:#1e40af;padding:25px 20px;text-align:center}
-.top h1{font-size:38px;line-height:1.1}
-.top p{font-size:18px;margin-top:8px;opacity:0.9}
-.hero{padding:35px 20px;text-align:center;background:linear-gradient(180deg,#1e40af,#0f172a)}
-.hero h2{font-size:32px;line-height:1.2}
-.hero p{font-size:19px;margin:15px 0;line-height:1.5}
-.cards{padding:20px;display:flex;flex-direction:column;gap:18px;max-width:600px;margin:0 auto}
-.card{background:white;color:#0f172a;border-radius:18px;padding:28px;text-align:center}
-.card h3{font-size:26px;margin-bottom:8px}
-.card p{font-size:17px;line-height:1.5;color:#475569}
-.card a{display:block;margin-top:18px;background:#1e40af;color:white;text-decoration:none;font-size:22px;font-weight:bold;padding:18px;border-radius:12px}
-.card:nth-child(2) a{background:#059669}
-.card:nth-child(3) a{background:#d97706}
-.footer{text-align:center;padding:20px;font-size:15px;opacity:0.8}
-@media(min-width:700px){.top h1{font-size:52px}.hero h2{font-size:48px}.cards{max-width:900px}}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f4f6f8;color:#111}
+  header{background:#0a1930;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+  .logo{display:flex;gap:10px;align-items:center}
+  .logo-box{background:#132a4d;width:48px;height:48px;display:grid;place-items:center;border-radius:10px;font-weight:900;font-size:22px}
+  .logo small{color:#f5b301;letter-spacing:2px;font-size:11px}
+  .menu{font-size:26px}
+  .hero{background:#0a1930;color:#fff;padding:40px 20px 30px;text-align:center}
+  .hero span{color:#f5b301;letter-spacing:3px;font-size:12px;font-weight:bold}
+  .hero h1{font-size:42px;line-height:1.05;margin:14px 0}
+  .hero p{color:#cbd5e1;line-height:1.6;max-width:600px;margin:0 auto}
+  .btns{display:flex;gap:12px;justify-content:center;margin:22px 0;flex-wrap:wrap}
+  .btn{padding:14px 18px;border-radius:10px;font-weight:bold;text-decoration:none}
+  .btn-gold{background:#f5b301;color:#000}
+  .btn-white{background:#fff;color:#000}
+  .overview{background:#fff;color:#111;border-radius:14px;padding:20px;text-align:left;max-width:700px;margin:0 auto}
+  .overview b{color:#0a1930}
+  .overview small{color:#666}
+  .section{padding:28px 18px;max-width:900px;margin:0 auto}
+  .section h2{font-size:32px;margin:8px 0 20px}
+  .card{background:#fff;border-radius:16px;padding:22px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+  .card h3{font-size:22px;margin:10px 0}
+  .card p{color:#555;line-height:1.6}
+  .pill{display:inline-block;background:#eef2ff;padding:6px 12px;border-radius:20px;font-size:13px;font-weight:bold;color:#1e3a8a}
+  .login-btn{display:block;text-align:center;background:#0a1930;color:#fff;padding:14px;border-radius:10px;text-decoration:none;margin-top:16px}
+  .update{background:#fff;border-radius:14px;padding:18px;margin-bottom:12px;display:flex;gap:14px;align-items:center}
+  .update-icon{width:50px;height:50px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:#eef2ff}
+  .principle{background:#0a1930;color:#fff;border-radius:18px;padding:36px 22px;text-align:center}
+  .principle h2{font-size:34px}
+  footer{background:#020617;color:#ccc;padding:24px 18px;text-align:center}
+  footer a{color:#ccc;text-decoration:none;margin:0 8px}
 </style>
 </head>
 <body>
-<div class="top">
-<h1>🏫 BWIJANGA S.S</h1>
-<p>Excellence • Discipline • God First</p>
-</div>
+
+<header>
+  <div class="logo">
+    <div class="logo-box">BS</div>
+    <div><b>BWIJANGA S.S.</b><br><small>SCHOOL DIGITAL PORTAL</small></div>
+  </div>
+  <div class="menu">☰</div>
+</header>
+
 <div class="hero">
-<h2>Welcome to Our<br>School Portal</h2>
-<p>Results, Report Cards & School Management<br>All in One Place - Fast, Simple & Secure</p>
+  <span>LEARNING • LEADERSHIP • LEGACY</span>
+  <h1>Welcome to<br>BWIJANGA S.S.</h1>
+  <p>Your digital gateway to learning, teaching, and school administration — all in one place.</p>
+  <div class="btns">
+    <a class="btn btn-gold" href="#">Access Student Portal →</a>
+    <a class="btn btn-white" href="#">Explore Portals</a>
+  </div>
+  <div class="overview">
+    <b>Overview</b><br><br>
+    <h3>Excellence. Discipline.<br>God First.</h3><br>
+    <small>• 3 Portal experiences<br>• 24/7 Access anytime</small>
+  </div>
 </div>
-<div class="cards">
-<div class="card"><h3>🎓 For Students</h3><p>View your results and report card anytime</p><a href="student.html">STUDENT LOGIN →</a></div>
-<div class="card"><h3>👨‍🏫 For Teachers</h3><p>Enter marks, view your class & streams</p><a href="teacher.html">TEACHER LOGIN →</a></div>
-<div class="card"><h3>👑 For Admin</h3><p>See all students, all results, print report cards</p><a href="admin.html">ADMIN LOGIN →</a></div>
+
+<div class="section">
+  <small style="color:#b45309;font-weight:bold">CHOOSE YOUR PORTAL</small>
+  <h2>One school.<br>Three portals.</h2>
+
+  <div class="card">
+    <span class="pill">👨‍🎓 STUDENT PORTAL</span>
+    <h3>Student Portal</h3>
+    <p>Access your results, report cards, class announcements and learning materials — anytime, anywhere.</p>
+    <a class="login-btn" href="#">Student Login →</a>
+  </div>
+
+  <div class="card">
+    <span class="pill">👩‍🏫 TEACHER PORTAL</span>
+    <h3>Teacher Portal</h3>
+    <p>Manage your teaching experience with tools for classes, learners, marks, and communication.</p>
+    <a class="login-btn" href="#">Teacher Login →</a>
+  </div>
+
+  <div class="card">
+    <span class="pill">🛡️ ADMINISTRATOR PORTAL</span>
+    <h3>Administrator Portal</h3>
+    <p>Oversee school operations and manage student records, staff accounts and school-wide reports.</p>
+    <a class="login-btn" href="#">Admin Login →</a>
+  </div>
 </div>
-<div class="footer">Term 1, 2027 • Built by Samuel k • Version 1</div>
+
+<div class="section">
+  <small style="color:#b45309;font-weight:bold">SCHOOL UPDATES</small>
+  <h2>Stay informed</h2>
+  <div class="update"><div class="update-icon">📢</div><div><b>Welcome to the digital portal</b><br><small>Your one-stop hub for results, communication, and learning resources.</small></div></div>
+  <div class="update"><div class="update-icon">📚</div><div><b>Academic information</b><br><small>Term dates, results, and report cards — all in one place.</small></div></div>
+  <div class="update"><div class="update-icon">💻</div><div><b>Learning resources</b><br><small>Notes, assignments, and class materials for every learner.</small></div></div>
+</div>
+
+<div class="section">
+  <div class="principle">
+    <small style="color:#f5b301">OUR GUIDING PRINCIPLE</small>
+    <h2>"Excellence • Discipline • God First."</h2>
+    <p style="color:#cbd5e1;margin:14px 0">In all we do, we strive for excellence, we build character through discipline, and we honour God first.</p>
+    <a class="btn btn-gold" href="#" style="display:inline-block">Enter the Portal →</a>
+  </div>
+</div>
+
+<footer>
+  <b style="color:#fff">BS &nbsp; BWIJANGA S.S.</b><br><br>
+  <a href="#">Home</a> <a href="#">Portals</a> <a href="#">Updates</a><br><br>
+  <small>© 2026 Bwijanga Secondary School. All rights reserved.</small>
+</footer>
+
 </body>
 </html>
